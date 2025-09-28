@@ -39,10 +39,10 @@ String CozeAgent::getBotId() {
 
 void CozeAgent::chat(const String &query) {
     reset();
-    ESP_LOGI(TAG, "发起对话: %s", query.c_str());
+    ESP_LOGI(TAG, "Start a conversation: %s", query.c_str());
     HTTPClient http;
     http.begin("https://api.coze.cn/v3/chat?conversation_id=" + getConversationId());
-    // 这里Bearer后面的token修改成你自己的Coze平台的token，可在https://www.coze.cn/open/oauth/pats这里获取
+    // Here_the_token_behind_bearer_is_modified_to_your_own_coze_platform_token, available_at_https://www.coze.cn/open/oauth/pats are obtained here
     http.addHeader("Authorization", "Bearer pat_TWjCVBrZMdB0i3hieuhpWpyiF3hTqrouEGd6f3WAaaQvo0mU4dRjCQN9k3tk9WS4");
     http.addHeader("Content-Type", "application/json");
     JsonDocument requestBody;
@@ -60,15 +60,15 @@ void CozeAgent::chat(const String &query) {
     const int httpResponseCode = http.POST(requestBodyStr.c_str());
     if (httpResponseCode > 0) {
         ESP_LOGI(TAG, "Response code: %d", httpResponseCode);
-        // 调用coze智能体时开始创建语音合成连接，加快后续合成速度
+        // start_creating_speech_synthesis_connection_when_calling_coze_agent，speed_up_subsequent_synthesis
         _tts->connect();
         WiFiClient *stream = http.getStreamPtr();
         String line = "";
         String lastEvent;
         String output = "";
-        // 持续读取流式输出
+        // continuous_reading_of_streaming_output
         while (stream->connected() || stream->available()) {
-            // 等待数据流有新的数据可读
+            // wait_for_the_data_stream_to_have_new_data_to_read
             while (!stream->available()) {
                 vTaskDelay(pdMS_TO_TICKS(10));
             }
@@ -76,15 +76,15 @@ void CozeAgent::chat(const String &query) {
             if (!line.isEmpty()) {
                 // ESP_LOGD(TAG, "%s", line.c_str());
                 if (line.startsWith("event:")) {
-                    // Coze智能体流式调用已返回完整内容
+                    // Coze agent streaming call has returned full content
                     if (lastEvent == "event:conversation.message.delta" &&
                         line == "event:conversation.message.completed") {
                         http.end();
-                        ESP_LOGI(TAG, "Coze智能体调用结束");
+                        ESP_LOGI(TAG, "Coze agent call ends");
                         ESP_LOGI(TAG, "command: %s", _command.c_str());
                         ESP_LOGI(TAG, "params: %s", _params.c_str());
                         ESP_LOGI(TAG, "response: %s", _response.c_str());
-                        // 如果还有未合成的音频数据，继续合成语音
+                        // if_there_is_still_unsynthesised_audio_data，continue_to_synthesize_the_pronunciation
                         if (!_ttsBuffer.isEmpty()) {
                             _tts->tts(_ttsBuffer, true);
                         }
@@ -97,7 +97,7 @@ void CozeAgent::chat(const String &query) {
                     JsonDocument doc;
                     DeserializationError error = deserializeJson(doc, response);
                     if (error) {
-                        ESP_LOGE(TAG, "json反序列化失败: %s", error.c_str());
+                        ESP_LOGE(TAG, "json deserialization failed: %s", error.c_str());
                         continue;
                     }
                     if (doc["content"].is<String>() && doc["type"] == "answer") {
@@ -109,12 +109,12 @@ void CozeAgent::chat(const String &query) {
             }
             vTaskDelay(pdMS_TO_TICKS(1));
         }
-        ESP_LOGI(TAG, "Coze智能体调用结束");
+        ESP_LOGI(TAG, "Coze agent call ends");
         http.end();
     }
 }
 
-// 执行状态转移
+// execution_status_transition
 void CozeAgent::stateTransfer(LLMState state, LLMEvent event) {
     const auto it = _stateTransferRouterMap.find(std::make_pair(state, event));
     if (it != _stateTransferRouterMap.end()) {
@@ -123,7 +123,7 @@ void CozeAgent::stateTransfer(LLMState state, LLMEvent event) {
 }
 
 void CozeAgent::appendField(const String &delta) {
-    // 根据当前状态，追加对应字段的内容
+    // according_to_current_status，append_the_content_of_the_corresponding_field
     switch (_state) {
         case Init:
             _command += delta;
@@ -135,11 +135,11 @@ void CozeAgent::appendField(const String &delta) {
             _response += delta;
             _ttsBuffer += delta;
             const std::pair<int, size_t> delimiterIndex = findMinIndexOfDelimiter(_ttsBuffer);
-            // 如果有语义分隔符
+            // if_there_is_a_semantic_separator
             if (delimiterIndex.first >= 0) {
-                // 截取分隔符前面的内容，进行语音合成
+                // intercept_the_contents_before_the_delimiter，perform_speech_synthesis
                 _tts->tts(_ttsBuffer.substring(0, delimiterIndex.first), false);
-                // 更新还未语音合成的部分
+                // updated_the_part_that_has_not_been_synthesized_yet
                 _ttsBuffer = _ttsBuffer.substring(delimiterIndex.first + delimiterIndex.second);
             }
         }
@@ -149,26 +149,26 @@ void CozeAgent::appendField(const String &delta) {
     }
 }
 
-// 处理增量分片数据
+// process_incremental_shard_data
 void CozeAgent::processDelta(const String &delta) {
     if (delta.isEmpty()) return;
-    ESP_LOGV(TAG, "处理智能体增量消息: %s", delta.c_str());
-    // 如果新的分片没有包含分隔符，无需执行状态转移
+    ESP_LOGV(TAG, "Processing agent incremental messages: %s", delta.c_str());
+    // if_the_new_shard_does_not_contain_a_separator，no_state_transfer_required
     const int index = delta.indexOf(DELIMITER);
     if (index < 0) {
-        // 根据当前状态，追加对应字段的内容
+        // according_to_current_status，append_the_content_of_the_corresponding_field
         appendField(delta);
         return;
     }
-    // 截取分隔符左边的部分
+    // intercept_the_part_on_the_left_of_the_delimiter
     const String leftPart = delta.substring(0, index);
-    // 分隔符右边剩余部分（很可能还会包含分隔符）
+    // the_remaining_part_on_the_right_side_of_the_separator（it_is_likely_to_contain_delimiters）
     const String remainingPart = delta.substring(index + 1);
 
-    // Step1: 追加左半部分
+    // Step1: add_the_left_half
     appendField(leftPart);
-    // Step2: 然后执行状态转移
+    // Step2: then_perform_state_transfer
     stateTransfer(_state, Delimiter);
-    // Step3: 递归处理剩余部分
+    // Step3: recursively_process_the_rest
     processDelta(remainingPart);
 }

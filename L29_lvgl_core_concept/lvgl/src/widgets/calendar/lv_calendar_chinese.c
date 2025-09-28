@@ -56,52 +56,52 @@ static const uint32_t calendar_chinese_table[199] = {/*1901-2099*/
 
 static const uint16_t month_total_day[13] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334, 365};
 
-static const char * chinese_calendar_month_name[] = {"正月", "二月", "三月", "四月", "五月", "六月",
-                                                     "七月", "八月", "九月", "十月", "十一月", "腊月"
+static const char * chinese_calendar_month_name[] = {"First month", "February", "March", "April", "May", "June",
+                                                     "July", "August", "September", "October", "November", "Twelfth month"
                                                     };
 
-static const char * chinese_calendar_leep_month_name[] = {"闰正月", "闰二月", "闰三月", "闰四月", "闰五月", "闰六月",
-                                                          "闰七月", "闰八月", "闰九月", "闰十月", "闰十一月", "闰腊月"
+static const char * chinese_calendar_leep_month_name[] = {"Leap month", "Leap February", "Leap March", "Leap April", "Leap May", "Leap June",
+                                                          "Leap July", "Leap August", "Leap September", "Leap October", "Leap November", "Leap month"
                                                          };
 
-static const char * chinese_calendar_day_name[] = {"初一", "初二", "初三", "初四", "初五",
-                                                   "初六", "初七", "初八", "初九", "初十",
-                                                   "十一", "十二", "十三", "十四", "十五",
-                                                   "十六", "十七", "十八", "十九", "二十",
-                                                   "廿一", "廿二", "廿三", "廿四", "廿五",
-                                                   "廿六", "廿七", "廿八", "廿九", "三十"
+static const char * chinese_calendar_day_name[] = {"First grade", "Second grade", "Third year of junior high school", "The fourth year of junior high school", "The fifth day of the New Year",
+                                                   "The sixth day of the first", "Junior seven", "Eighth day", "The Ninth Festival", "First ten",
+                                                   "eleven", "twelve", "Thirteen", "fourteen", "fifteen",
+                                                   "sixteen", "Seventeen", "eighteen", "nineteen", "twenty",
+                                                   "21", "Twenty-two", "Twenty-three", "Twenty-four", "Twenty-five",
+                                                   "Twenty-six", "Twenty-seven", "28", "Twenty-nine", "thirty"
                                                   };
 
 static const lv_calendar_festival_t festivals_base_chinese[] = {
-    {"春节", 1, 1},
-    {"元宵节", 1, 15},
-    {"端午节", 5, 5},
-    {"七夕节", 7, 7},
-    {"中元节", 7, 15},
-    {"中秋节", 8, 15},
-    {"重阳节", 9, 9},
-    {"腊八节", 12, 8},
-    {"除夕", 12, 29},/* To determine whether it is 12.29 or 12.30. */
-    {"除夕", 12, 30},/* To determine whether it is 12.29 or 12.30. */
+    {"Spring Festival", 1, 1},
+    {"Lantern Festival", 1, 15},
+    {"Dragon Boat Festival", 5, 5},
+    {"Chinese Valentine's Day", 7, 7},
+    {"Zhongyuan Festival", 7, 15},
+    {"Mid-Autumn Festival", 8, 15},
+    {"Double Ninth Festival", 9, 9},
+    {"Laba Festival", 12, 8},
+    {"Lunar New Year's eve", 12, 29},/* To determine whether it is 12.29 or 12.30. */
+    {"Lunar New Year's eve", 12, 30},/* To determine whether it is 12.29 or 12.30. */
 };
 
 static const lv_calendar_festival_t festivals_base_gregorian[] = {
-    {"元旦", 1, 1},
-    {"情人节", 2, 14},
-    {"妇女节", 3, 8},
-    {"植树节", 3, 12},
-    {"消费节", 3, 15},
-    {"愚人节", 4, 1},
-    {"劳动节", 5, 1},
-    {"青年节", 5, 4},
-    {"儿童节", 6, 1},
-    {"建党节", 7, 1},
-    {"建军节", 8, 1},
-    {"教师节", 9, 10},
-    {"国庆节", 10, 1},
-    {"万圣节", 10, 31},
-    {"平安夜", 12, 24},
-    {"圣诞节", 12, 25},
+    {"New Year", 1, 1},
+    {"Valentine's Day", 2, 14},
+    {"Women's Day", 3, 8},
+    {"Tree Planting Day", 3, 12},
+    {"Consumer Festival", 3, 15},
+    {"April Fool's Day", 4, 1},
+    {"Labor Day", 5, 1},
+    {"Youth Day", 5, 4},
+    {"Children's Day", 6, 1},
+    {"Party Founding Day", 7, 1},
+    {"Army Day", 8, 1},
+    {"Teachers' Day", 9, 10},
+    {"National Day", 10, 1},
+    {"Halloween", 10, 31},
+    {"Christmas Eve", 12, 24},
+    {"Christmas", 12, 25},
 };
 
 /**********************

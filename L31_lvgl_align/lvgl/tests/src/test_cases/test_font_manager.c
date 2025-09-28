@@ -172,7 +172,7 @@ static void test_font_manager_src(add_src_cb_t add_src_cb)
     /* Create label with the font */
     lv_obj_t * label = lv_label_create(lv_screen_active());
     lv_label_set_text(label,
-                      "这是一段中文。\n"
+                      "This is a Chinese paragraph. \n"
                       "This is a English text.\n"
                       "Symbols: " LV_SYMBOL_OK LV_SYMBOL_CLOSE);
     lv_obj_center(label);

@@ -8,8 +8,8 @@ void setup()
 
     SPIFFS.begin(true);
 
-    Serial.printf("SPIFFSS总空间大小：%d\n", SPIFFS.totalBytes());
-    Serial.printf("SPIFFSS已使用高大小：%d\n", SPIFFS.usedBytes());
+    Serial.printf("SPIFFSS total space size: %d\n", SPIFFS.totalBytes());
+    Serial.printf("SPIFFSS has used high size: %d\n", SPIFFS.usedBytes());
 }
 
 void loop()

@@ -1,7 +1,7 @@
 <a href="https://github.com/sponsors/lvgl" target="_blank"><img align="left" src="https://lvgl.io/github-assets/sponsor.png" height="32px"></a>
 
 <p align="right">
-  <a href="../README.md">English</a>  |  <b>中文</b> | <a href="./README_pt_BR.md">Português do Brasil</a> | <a href="./README_jp.md">日本語</a>
+<a href="../README.md">English</a> | <b>Chinese</b> | <a href="./README_pt_BR.md">Português do Brasil</a> | <a href="./README_jp.md">Japanese</a>
 </p>
 <br>
 
@@ -15,7 +15,7 @@
 </h1>
 
 <h1 align="center">
-  轻量级通用型图形库
+Lightweight universal graphics library
 </h1>
 
 <div align="center">
@@ -27,68 +27,68 @@
 <br>
 
 <p align="center">
-<a href="https://lvgl.io" title="Homepage of LVGL">官网 </a> |
-<a href="https://docs.lvgl.io/" title="Detailed documentation with 100+ examples">文档</a> |
-<a href="https://forum.lvgl.io" title="Get help and help others">论坛</a> |
-<a href="https://lvgl.io/demos" title="Demos running in your browser">示例</a> |
-<a href="https://lvgl.io/services" title="Graphics design, UI implementation and consulting">服务</a>
+<a href="https://lvgl.io" title="Homepage of LVGL">Official Website </a> |
+<a href="https://docs.lvgl.io/" title="Detailed documentation with 100+ examples">Document</a> |
+<a href="https://forum.lvgl.io" title="Get help and help others">Forum</a> |
+<a href="https://lvgl.io/demos" title="Demos running in your browser">Example</a> |
+<a href="https://lvgl.io/services" title="Graphics design, UI implementation and consulting">Services</a>
 </p>
 
 
-[中文宣传单](./flyers/LVGL-Chinese-Flyer.pdf)
+[Chinese flyer](./flyers/LVGL-Chinese-Flyer.pdf)
 
-## :ledger: 目录
+## :ledger: directory
 
-- [:ledger: 目录](#ledger-目录)
-- [:rocket: 概况与总览](#rocket-概况与总览)
-  - [硬件要求](#硬件要求)
-  - [:package: 已经支持的平台](#package-已经支持的平台)
-- [如何入门](#如何入门)
-- [:robot: 例程](#robot-例程)
-  - [Button with Click Event 按钮与点击事件](#button-with-click-event-按钮与点击事件)
+- [:ledger: directory](#ledger-directory)
+- [:rocket: Overview and Overview](#rocket-Overview and Overview)
+- [Hardware Requirements](#Hardware Requirements)
+- [:package: already supported platform](#package-already supported platform)
+- [How to get started](#How to get started)
+- [:robot: routine](#robot-routine)
+- [Button with Click Event button and click event](#button-with-click-event button and click event)
   - [Micropython](#micropython)
-  - [Checkboxes with Layout 带布局的复选框](#checkboxes-with-layout-带布局的复选框)
-  - [Styling a Slider 设置滑块的样式](#styling-a-slider-设置滑块的样式)
-  - [English, Hebrew (mixed LRT-RTL) and Chinese texts 英语、希伯来语（ 双向文本排版 ）和中文](#english-hebrew-mixed-lrt-rtl-and-chinese-texts-英语希伯来语-双向文本排版-和中文)
-- [:handshake: 服务](#handshake-服务)
-- [:star: 如何向社区贡献](#star-如何向社区贡献)
+- [Checkboxes with Layout Checkboxes with Layout](#checkboxes-with-layout-checkboxes with Layout)
+- [Styling a Slider Sets the style of the slider](#styling-a-slider-Sets the style of the slider)
+- [English, Hebrew (mixed LRT-RTL) and Chinese texts English, Hebrew (two-way text typesetting) and Chinese](#english-hebrew-mixed-lrt-rtl-and-chinese-texts-English Hebrew-two-way text typesetting-and Chinese)
+- [:handshake: Service](#handshake-Service)
+- [:star: How to contribute to the community](#star-How to contribute to the community)
 
-## :rocket: 概况与总览
+## :rocket: Overview and Overview
 
-**特性**
+**characteristic**
 
--  丰富且强大的模块化[图形组件](https://docs.lvgl.io/master/details/widgets/index.html)：按钮
-   (buttons)、图表 (charts)、列表 (lists)、滑动条 (sliders)、图片
-   (images) 等
--  高级的图形引擎：动画、抗锯齿、透明度、平滑滚动、图层混合等效果
--  支持多种[输入设备](https://docs.lvgl.io/master/details/main-modules/indev.html)：触摸屏、键盘、编码器、按键等
--  支持[多显示设备](https://docs.lvgl.io/master/details/main-modules/display/index.html)
--  不依赖特定的硬件平台，可以在任何显示屏上运行
--  配置可裁剪（最低资源占用：64 kB Flash，16 kB RAM）
--  基于UTF-8的多语种支持，例如中文、日文、韩文、阿拉伯文等
--  可以通过[类CSS](https://docs.lvgl.io/master/details/common-widget-features/styles/style.html)的方式来设计、布局图形界面（例如：[Flexbox](https://docs.lvgl.io/master/details/common-widget-features/layouts/flex.html)、[Grid](https://docs.lvgl.io/master/details/common-widget-features/layouts/grid.html)）
--  支持操作系统、外置内存、以及硬件加速（LVGL已内建支持STM32 DMA2D、SWM341 DMA2D、NXP PXP和VGLite）
--  即便仅有[单缓冲区(frame buffer)](https://docs.lvgl.io/master/details/main-modules/display/index.html)的情况下，也可保证渲染如丝般顺滑
--  全部由C编写完成，并支持C++调用
--  支持Micropython编程，参见：[LVGL API in Micropython](https://blog.lvgl.io/2019-02-20/micropython-bindings)
--  支持[模拟器](https://docs.lvgl.io/master/details/integration/ide/pc-simulator.html) 仿真，可以无硬件依托进行开发
--  丰富详实的[例程](https://github.com/lvgl/lvgl/tree/master/examples)
--  详尽的[文档](http://docs.lvgl.io/) 以及API参考手册，可线上查阅或可下载为PDF格式
+- Rich and powerful modular [graphic components] (https://docs.lvgl.io/master/details/widgets/index.html): button
+(buttons), charts, lists, sliders, pictures
+(images) etc.
+- Advanced graphics engine: animation, anti-aliasing, transparency, smooth scrolling, layer mixing and other effects
+- Supports multiple [input devices] (https://docs.lvgl.io/master/details/main-modules/indev.html): touch screen, keyboard, encoder, keys, etc.
+- Support [multiple display devices](https://docs.lvgl.io/master/details/main-modules/display/index.html)
+- No dependency on a specific hardware platform, can run on any display
+- Configure clipping (minimum resource occupancy: 64 kB Flash, 16 kB RAM)
+- Multilingual support based on UTF-8, such as Chinese, Japanese, Korean, Arabic, etc.
+- You can design and layout the graphical interface through [CSS](https://docs.lvgl.io/master/details/common-widget-features/styles/style.html) (for example: [Flexbox](https://docs.lvgl.io/master/details/common-widget-features/layouts/flex.html), [Grid](https://docs.lvgl.io/master/details/common-widget-features/layouts/grid.html))
+- Supports operating system, external memory, and hardware acceleration (LVGL has built-in support for STM32 DMA2D, SWM341 DMA2D, NXP PXP and VGLite)
+- Even if there is only [frame buffer](https://docs.lvgl.io/master/details/main-modules/display/index.html), the rendering can be guaranteed to be as smooth as silky
+- All written by C and supports C++ calls
+- Support Micropython programming, see: [LVGL API in Micropython](https://blog.lvgl.io/2019-02-20/micropython-bindings)
+- Supports [Simulator](https://docs.lvgl.io/master/details/integration/ide/pc-simulator.html) simulation, and can be developed without hardware support.
+- Rich and detailed [routines](https://github.com/lvgl/lvgl/tree/master/examples)
+- Detailed [documents] (http://docs.lvgl.io/) and API reference manual, available for online viewing or downloadable in PDF format
 
-### 硬件要求
+### Hardware Requirements
 
 <table>
    <tr>
-      <td><strong>要求</strong></td>
-      <td><strong>最低要求</strong></td>
-      <td><strong>建议要求</strong></td>
+<td><strong>Requirements</strong></td>
+<td><strong>Minimum Requirements</strong></td>
+<td><strong>Suggested Requirements</strong></td>
    </tr>
    <tr>
-      <td><strong>架构</strong></td>
-      <td colspan="2">16、32、64位微控制器或微处理器</td>
+<td><strong>Architecture</strong></td>
+<td colspan="2">16, 32, 64-bit microcontroller or microprocessor</td>
    </tr>
    <tr>
-      <td><strong>时钟</strong></td>
+<td><strong>Clock</strong></td>
       <td> &gt; 16 MHz</td>
       <td> &gt; 48 MHz</td>
    </tr>
@@ -105,20 +105,20 @@
    <tr>
       <td><strong>Draw buffer</strong></td>
       <td> &gt; 1 × <em>hor. res.</em> pixels</td>
-      <td> &gt; 1/10屏幕大小 </td>
+<td> &gt; 1/10 screen size </td>
    </tr>
    <tr>
-      <td><strong>编译器</strong></td>
-      <td colspan="2">C99或更新 </td>
+<td><strong>Compiler</strong></td>
+<td colspan="2">C99 or updated </td>
    </tr>
 </table>
 
-*注意：资源占用情况与具体硬件平台、编译器等因素有关，上表中仅给出参考值*
+*Note: Resource usage is related to specific hardware platform, compiler and other factors. Only reference values ​​are given in the above table*
 
-### :package: 已经支持的平台
+### :package: already supported platforms
 
-LVGL本身并不依赖特定的硬件平台，任何满足LVGL硬件配置要求的微控制器均可运行LVGL。
-如下仅列举其中一部分:
+LVGL itself does not rely on a specific hardware platform, and any microcontroller that meets the LVGL hardware configuration requirements can run LVGL.
+Only some of them are listed below:
 
 -  NXP: Kinetis, LPC, iMX, iMX RT
 -  STM32F1, STM32F3, STM32F4, STM32F7, STM32L4, STM32L5, STM32H7
@@ -130,7 +130,7 @@ LVGL本身并不依赖特定的硬件平台，任何满足LVGL硬件配置要求
 -  Quectel modems
 -  [SYNWIT SWM341](https://www.synwit.cn/)
 
-LVGL也支持：
+LVGL also supports:
 - [Arduino library](https://docs.lvgl.io/master/details/integration/framework/arduino.html)
 - [PlatformIO package](https://registry.platformio.org/libraries/lvgl/lvgl)
 - [Zephyr library](https://docs.zephyrproject.org/latest/kconfig.html#CONFIG_LVGL)
@@ -141,26 +141,26 @@ LVGL也支持：
 
 
 
-## 如何入门
+## How to get started
 
-请按照如下顺序来学习LVGL：
-1. 使用[网页在线例程](https://lvgl.io/demos) 来体验LVGL（3分钟）
-2. 阅读文档[简介](https://docs.lvgl.io/master/intro/introduction.html)章节来初步了解LVGL（5分钟）
-3. 再来阅读一下文档快速[快速概览](https://docs.lvgl.io/master/intro/getting_started.html)章节来了解LVGL的基本知识（15分钟）
-4. 学习如何使用[模拟器](https://docs.lvgl.io/master/details/integration/ide/pc-simulator.html)来在电脑上仿真LVGL（10分钟）
-5. 试着动手实践一些[例程](https://github.com/lvgl/lvgl/tree/master/examples)
-6. 参考[移植指南](https://docs.lvgl.io/master/details/integration/adding-lvgl-to-your-project/index.html)尝试将LVGL移植到一块开发板上，LVGL也已经提供了一些移植好的[工程](https://github.com/lvgl?q=lv_port_)
-7. 仔细阅读文档[总览](https://docs.lvgl.io/master/details/main-modules/index.html)章节来更加深入的了解和熟悉LVGL（2-3小时）
-8. 浏览文档[组件(Widgets)](https://docs.lvgl.io/master/details/widgets/index.html)章节来了解如何使用它们
-9. 如果你有问题可以到LVGL[论坛](http://forum.lvgl.io/)提问
-10. 阅读文档[如何向社区贡献](https://docs.lvgl.io/master/contributing/index.html)章节来看看你能帮LVGL社区做些什么，以促进LVGL软件质量的不断提高（15分钟）
+Please learn LVGL in the following order:
+1. Use [Web Online Routine] (https://lvgl.io/demos) to experience LVGL (3 minutes)
+2. Read the [Introduction](https://docs.lvgl.io/master/intro/introduction.html) chapter to gain a preliminary understanding of LVGL (5 minutes)
+3. Read the quick [Quick Overview] (https://docs.lvgl.io/master/intro/getting_started.html) chapter to understand the basic knowledge of LVGL (15 minutes)
+4. Learn how to use [Simulator] (https://docs.lvgl.io/master/details/integration/ide/pc-simulator.html) to simulate LVGL on your computer (10 minutes)
+5. Try to practice some [routines](https://github.com/lvgl/lvgl/tree/master/examples)
+6. Refer to [Migration Guide] (https://docs.lvgl.io/master/details/integration/adding-lvgl-to-your-project/index.html) to try to port LVGL to a development board. LVGL has also provided some portable [Projects] (https://github.com/lvgl?q=lv_port_)
+7. Read the document [Overview](https://docs.lvgl.io/master/details/main-modules/index.html) chapters to gain a deeper understanding and familiarity with LVGL (2-3 hours)
+8. Browse the documentation [Components (Widgets)](https://docs.lvgl.io/master/details/widgets/index.html) section to learn how to use them
+9. If you have any questions, you can ask questions at LVGL [forum] (http://forum.lvgl.io/)
+10. Read the document [How to contribute to the community] (https://docs.lvgl.io/master/contributing/index.html) chapter to see what you can do to the LVGL community to promote the continuous improvement of the quality of LVGL software (15 minutes)
 
 
-## :robot: 例程
+## :robot: routine
 
-更多例程请参见 [examples](https://github.com/lvgl/lvgl/tree/master/examples) 文件夹。
+For more routines, see the [examples](https://github.com/lvgl/lvgl/tree/master/examples) folder.
 
-### Button with Click Event 按钮与点击事件
+### Button with Click Event
 
 ![Button with Click Event](https://raw.githubusercontent.com/kisvegabor/test/master/readme_example_2.gif)
 
@@ -189,7 +189,7 @@ void btn_event_cb(lv_event_t * e)
 
 ### Micropython
 
-更多信息请到 [Micropython官网](https://docs.lvgl.io/master/get-started/bindings/micropython.html) 查询.
+For more information, please go to [Micropython official website](https://docs.lvgl.io/master/get-started/bindings/micropython.html) to query.
 
 <details>
   <summary>MicroPython code | <a href="https://sim.lvgl.io/v8.3/micropython/ports/javascript/index.html?script_startup=https://raw.githubusercontent.com/lvgl/lvgl/0d9ab4ee0e591aad1970e3c9164fd7c544ecce70/examples/header.py&script=https://raw.githubusercontent.com/lvgl/lvgl/0d9ab4ee0e591aad1970e3c9164fd7c544ecce70/examples/widgets/slider/lv_example_slider_2.py&script_direct=926bde43ec7af0146c486de470c53f11f167491e" target="_blank">Online Simulator</a> :gb:</summary>
@@ -213,7 +213,7 @@ label.center()
 <br>
 
 
-### Checkboxes with Layout 带布局的复选框
+### Checkboxes with Layout Checkboxes with Layout
 ![Checkboxes with layout in LVGL](https://raw.githubusercontent.com/kisvegabor/test/master/readme_example_3.gif)
 
 <details>
@@ -290,7 +290,7 @@ cb.add_event(event_handler, lv.EVENT.ALL, None)
 </details>
 
 
-### Styling a Slider 设置滑块的样式
+### Style a Slider Sets the slider style
 ![Styling a slider with LVGL](https://raw.githubusercontent.com/kisvegabor/test/master/readme_example_4.gif)
 
 
@@ -378,7 +378,7 @@ slider.set_style_shadow_spread(2, lv.PART.KNOB)
 <br>
 
 
-### English, Hebrew (mixed LRT-RTL) and Chinese texts 英语、希伯来语（ 双向文本排版 ）和中文
+### English, Hebrew (mixed LRT-RTL) and Chinese texts English, Hebrew (two-way text typesetting) and Chinese
 
 ![English, Hebrew and Chinese texts with LVGL](https://raw.githubusercontent.com/kisvegabor/test/master/readme_example_5.png)
 
@@ -401,7 +401,7 @@ lv_obj_align(rtl_label, LV_ALIGN_LEFT_MID, 5, 0);
 
 lv_obj_t * cz_label = lv_label_create(lv_screen_active());
 lv_label_set_text(cz_label,
-                  "嵌入式系统（Embedded System），\n是一种嵌入机械或电气系统内部、具有专一功能和实时计算性能的计算机系统。");
+"Embedded System,\n is a computer system embedded in mechanical or electrical systems, with dedicated functions and real-time computing performance.");
 lv_obj_set_style_text_font(cz_label, &lv_font_source_han_sans_sc_16_cjk, 0);
 lv_obj_set_width(cz_label, 310);
 lv_obj_align(cz_label, LV_ALIGN_BOTTOM_LEFT, 5, -5);
@@ -431,7 +431,7 @@ font_han_sans_16_cjk = lv.font_load("S:../../assets/font/lv_font_source_han_sans
 
 cz_label = lv.label(lv.screen_active())
 cz_label.set_style_text_font(font_han_sans_16_cjk, 0)
-cz_label.set_text("嵌入式系统（Embedded System），\n是一种嵌入机械或电气系统内部、具有专一功能和实时计算性能的计算机系统。")
+cz_label.set_text("Embedded System",\n is a computer system embedded in mechanical or electrical systems with dedicated functions and real-time computing performance.")
 cz_label.set_width(310)
 cz_label.align(lv.ALIGN.BOTTOM_LEFT, 5, -5)
 
@@ -440,25 +440,25 @@ cz_label.align(lv.ALIGN.BOTTOM_LEFT, 5, -5)
 
 
 
-## :handshake: 服务
+## :handshake: Service
 
 LVGL
-责任有限公司成立的目的是为了给用户使用LVGL图形库提供额外的技术支持，我们致力于提供以下服务：
+The purpose of the establishment of Responsibility Co., Ltd. is to provide additional technical support for users to use the LVGL graphics library. We are committed to providing the following services:
 
--  图形设计
--  UI设计
--  技术咨询以及技术支持
+- Graphic Design
+- UI Design
+- Technical consultation and technical support
 
-更多信息请参见 https://lvgl.io/services ，如果有任何问题请随时联系我们。
+For more information, please see https://lvgl.io/services, please feel free to contact us if you have any questions.
 
 
-## :star: 如何向社区贡献
+## :star: How to contribute to the community
 
-LVGL是一个开源项目，非常欢迎您参与到社区贡献当中。您有很多种方式来为提高LVGL贡献您的一份力量，包括但不限于：
+LVGL is an open source project, and you are very welcome to participate in community contributions. There are many ways you can contribute to your efforts to improve LVGL, including but not limited to:
 
--  介绍你基于LVGL设计的作品或项目
--  写一些例程
--  修改以及完善文档
--  修复bug
+- Introduce your works or projects based on LVGL design
+- Write some routines
+- Modify and improve documents
+- Fix bug
 
-请参见文档[如何向社区贡献](https://docs.lvgl.io/master/contributing/index.html)章节来获取更多信息。
+Please refer to the documentation [How to contribute to the community] (https://docs.lvgl.io/master/contributing/index.html) section for more information.

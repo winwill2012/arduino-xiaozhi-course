@@ -12,9 +12,9 @@ void loop()
 {
     Serial.println("Hello World");
 
-    ESP_LOGV(TAG, "这是一条VERBOSE日志: %d", millis());
-    ESP_LOGD(TAG, "这是一条DEBUG日志: %d", millis());
-    ESP_LOGI(TAG, "这是一条INFO日志: %d", millis());
-    ESP_LOGW(TAG, "这是一条WARN日志: %d", millis());
-    ESP_LOGE(TAG, "这是一条ERROR日志: %d", millis());
+    ESP_LOGV(TAG, "This is a VERBOSE log: %d", millis());
+    ESP_LOGD(TAG, "This is a DEBUG log: %d", millis());
+    ESP_LOGI(TAG, "This is an INFO log: %d", millis());
+    ESP_LOGW(TAG, "This is a WARN log: %d", millis());
+    ESP_LOGE(TAG, "This is an ERROR log: %d", millis());
 }

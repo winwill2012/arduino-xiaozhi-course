@@ -7,23 +7,23 @@
 
 #define MICROPHONE_I2S_NUM             I2S_NUM_1
 #define AUDIO_SAMPLE_RATE              16000
-#define AUDIO_RECORDING_SAMPLE_NUMBER  160    // 10ms音频样本数
+#define AUDIO_RECORDING_SAMPLE_NUMBER  160    // 10ms audio samples
 #define MICROPHONE_I2S_BCLK            42
 #define MICROPHONE_I2S_LRC             2
 #define MICROPHONE_I2S_DOUT            1
 
-#define CHUNK_SIZE 800             // 50ms音频大小
-#define TASK_COMPLETED_EVENT (1<<0)  // 表示一次语音识别任务结束的时间位
+#define CHUNK_SIZE 800             // 50ms audio size
+#define TASK_COMPLETED_EVENT (1<<0)  // indicates_the_time_bit_at_which_a_speech_recognition_task_ends
 
 const char* TAG = "ASR";
 
-// 默认头部
+// default_header
 constexpr byte DoubaoASRDefaultFullClientWsHeader[] = {0x11, 0x10, 0x10, 0x00};
 constexpr byte DoubaoASRDefaultAudioOnlyWsHeader[] = {0x11, 0x20, 0x10, 0x00};
 constexpr byte DoubaoASRDefaultLastAudioWsHeader[] = {0x11, 0x22, 0x10, 0x00};
 
 int16_t buffer[CHUNK_SIZE];
-RingbufHandle_t ringBuffer; // 用来暂存录音的环形缓冲区
+RingbufHandle_t ringBuffer; // ring_buffer_used_to_temporarily_store_recordings
 EventGroupHandle_t eventGroup;
 size_t bytesRead;
 std::vector<uint8_t> requestBuilder;
@@ -39,7 +39,7 @@ void parseResponse(const uint8_t* response)
     {
     case 0b1001:
         {
-            // 服务端下发包含识别结果的 full server response
+            // the_server_sends_the_recognition_results full server response
             const uint32_t payloadSize = readInt32(payload);
             payload += 4;
             std::string recognizeResult = readString(payload, payloadSize);
@@ -63,11 +63,11 @@ void parseResponse(const uint8_t* response)
                 {
                     String text = item["text"];
                     ESP_LOGD(TAG, "text = %s", text.c_str());
-                    // sequence小于0，表示这是最后一个数据包，直接可以打印语音识别全部内容
+                    // sequence less than 0, it_means_this_is_the_last_packet, you_can_print_all_the_contents_of_voice_recognition_directly
                     if (sequence < 0)
                     {
                         ESP_LOGI(TAG, "speech recognize result: %s", text.c_str());
-                        // 这是服务器返回的最后一个数据包，表示任务结束，往事件组发送事件，通知另一个任务可以结束了
+                        // this_is_the_last_packet_returned_by_the_server，indicates_that_the_task_is_over，send_events_to_event_group，notify_another_task_to_be_finished
                         xEventGroupSetBits(eventGroup, TASK_COMPLETED_EVENT);
                     }
                 }
@@ -76,7 +76,7 @@ void parseResponse(const uint8_t* response)
         }
     case 0b1111:
         {
-            // 服务端处理错误时下发的消息类型（如无效的消息格式，不支持的序列化方法等）
+            // the_type_of_message_sent_when_the_server_handles_errors（if_invalid_message_format，unsupported_serialization_methods_etc）
             const uint32_t errorCode = readInt32(payload);
             payload += 4;
             const uint32_t messageLength = readInt32(payload);
@@ -101,10 +101,10 @@ void eventCallback(WStype_t type, uint8_t* payload, size_t length)
     case WStype_ERROR:
         break;
     case WStype_CONNECTED:
-        ESP_LOGI(TAG, "websocket连接成功");
+        ESP_LOGI(TAG, "The websocket connection is successful");
         break;
     case WStype_DISCONNECTED:
-        ESP_LOGI(TAG, "websocket断开连接");
+        ESP_LOGI(TAG, "websocket disconnect");
         break;
     case WStype_TEXT:
         {
@@ -153,12 +153,12 @@ void buildFullClientRequest()
     payload[payloadStr.length()] = '\0';
     std::vector<uint8_t> payloadSize = uint32ToUint8Array(payloadStr.length());
     requestBuilder.clear();
-    // 先写入报头（四字节）
+    // write_to_the_header_first（four_bytes）
     requestBuilder.insert(requestBuilder.end(), DoubaoASRDefaultFullClientWsHeader,
                           DoubaoASRDefaultFullClientWsHeader + sizeof(DoubaoASRDefaultFullClientWsHeader));
-    // 写入payload长度（四字节）
+    // write_payload_length（four_bytes）
     requestBuilder.insert(requestBuilder.end(), payloadSize.begin(), payloadSize.end());
-    // 写入payload内容
+    // write_payload_content
     requestBuilder.insert(requestBuilder.end(), payload, payload + payloadStr.length());
 }
 
@@ -169,65 +169,65 @@ void buildAudioOnlyRequest(uint8_t* audio, const size_t size, const bool lastPac
 
     if (lastPacket)
     {
-        // 先写入报头（四字节）
+        // write_to_the_header_first（four_bytes）
         requestBuilder.insert(requestBuilder.end(), DoubaoASRDefaultLastAudioWsHeader,
                               DoubaoASRDefaultLastAudioWsHeader + sizeof(DoubaoASRDefaultLastAudioWsHeader));
     }
     else
     {
-        // 先写入报头（四字节）
+        // write_to_the_header_first（four_bytes）
         requestBuilder.insert(requestBuilder.end(), DoubaoASRDefaultAudioOnlyWsHeader,
                               DoubaoASRDefaultAudioOnlyWsHeader + sizeof(DoubaoASRDefaultAudioOnlyWsHeader));
     }
 
-    // 写入payload长度（四字节）
+    // write_payload_length（four_bytes）
     requestBuilder.insert(requestBuilder.end(), payloadLength.begin(), payloadLength.end());
-    // 写入payload内容
+    // write_payload_content
     requestBuilder.insert(requestBuilder.end(), audio, audio + size);
 }
 
 void asr(uint8_t* buffer, const size_t size, const bool firstPacket, const bool lastPacket)
 {
-    ESP_LOGI(TAG, "开始语音识别, 音频长度: %d, fistPacket = %d, lastPacket = %d",
+    ESP_LOGI(TAG, "Start speech recognition, audio_length: %d, fistPacket = %d, lastPacket = %d",
              size, firstPacket, lastPacket);
     if (firstPacket)
     {
         xEventGroupClearBits(eventGroup, TASK_COMPLETED_EVENT);
         while (!client.isConnected())
         {
-            // 如果websocket没有连接，持续调用websocket的loop函数（函数内部会有连接的创建逻辑），知道连接成功才继续往后
+            // if_the_websocket_is_not_connected，continuously_call_websocket_loop_function（there_will_be_a_connection_creation_logic_inside_the_function），keep_going_after_knowing_that_the_connection_is_successful
             client.loop();
             vTaskDelay(1);
         }
-        // 构建第一个语音识别请求的相关报文头，可以参考官方文档：https://www.volcengine.com/docs/6561/80818
+        // build_the_first_voice_recognition_request_related_message_header，you_can_refer_to_the_official_documentation：https://www.volcengine.com/docs/6561/80818
         buildFullClientRequest();
-        // 第一个数据包发往服务器，开启识别任务
+        // the_first_packet_is_sent_to_the_server，turn_on_the_recognition_task
         if (!client.sendBIN(requestBuilder.data(), requestBuilder.size()))
         {
-            ESP_LOGD(TAG, "发送语音识别请求第一个数据包失败");
+            ESP_LOGD(TAG, "Send the first packet to send the voice recognition request failed");
         }
-        // 给loop一个执行的机会，接收可能的服务器端下发的数据
+        // give_loop_an_opportunity_to_execute，receive_possible_serverside_data
         client.loop();
     }
-    // 构建语音数据包
+    // build_voice_packets
     buildAudioOnlyRequest(buffer, size, lastPacket);
     if (!client.sendBIN(requestBuilder.data(), requestBuilder.size()))
     {
-        ESP_LOGE(TAG, "发送语音识别音频数据包失败...");
+        ESP_LOGE(TAG, "Sending voice recognition audio packet failed...");
     }
-    // 继续给loop函数执行的机会
+    // continue_to_give_loop_function_a_chance_to_execute
     client.loop();
     if (lastPacket)
     {
-        // 如果已经往服务器发送了最后一个语音识别数据包，则等待任务结束
+        // if_the_last_voice_recognition_packet_has_been_sent_to_the_server，wait_for_the_end_of_the_task
         while ((xEventGroupWaitBits(eventGroup, TASK_COMPLETED_EVENT,
                                     false, true, pdMS_TO_TICKS(1)) & TASK_COMPLETED_EVENT) == 0)
         {
-            // 持续调用loop，接收服务器下发的数据
+            // continuously_call_loop，receive_data_sent_by_the_server
             client.loop();
             vTaskDelay(1);
         }
-        // 任务完成，关闭websocket连接
+        // task_completion，close_the_websocket_connection
         client.disconnect();
     }
 }
@@ -235,13 +235,13 @@ void asr(uint8_t* buffer, const size_t size, const bool firstPacket, const bool 
 void consumeRingBuffer(void* ptr)
 {
     size_t bytesRead;
-    bool firstPacket = true; // 流式语音识别，用这个表示这是识别的第一个语音包
+    bool firstPacket = true; // streaming_voice_recognition，use_this_to_indicate_that_this_is_the_first_voice_packet_recognized
     while (true)
     {
         void* buffer = xRingbufferReceive(ringBuffer, &bytesRead, pdMS_TO_TICKS(100));
         if (buffer != nullptr)
         {
-            ESP_LOGI(TAG, "从RingBuffer读到音频数据，长度: %d", bytesRead);
+            ESP_LOGI(TAG, "Read audio data from RingBuffer, length: %d", bytesRead);
             auto* audioData = static_cast<uint8_t*>(buffer);
             asr(audioData, bytesRead, firstPacket, false);
             if (firstPacket)
@@ -252,7 +252,7 @@ void consumeRingBuffer(void* ptr)
         }
         else if (!firstPacket)
         {
-            // 模拟最后一个空报文，没有任何音频数据，主要作用是让服务端结束一轮识别任务，返回最终的识别内容
+            // simulate_the_last_empty_message，no_audio_data，the_main_function_is_to_let_the_server_end_a_round_of_identification_tasks，return_to_the_final_identified_content
             uint8_t fakeAudio[1] = {0};
             asr(fakeAudio, 1, firstPacket, true);
             firstPacket = true;
@@ -268,7 +268,7 @@ void setup()
         .mode = static_cast<i2s_mode_t>(I2S_MODE_MASTER | I2S_MODE_RX),
         .sample_rate = AUDIO_SAMPLE_RATE,
         .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
-        .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT, // 这里的左右声道要和电路保持一致
+        .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT, // the_left_and_right_channels_here_should_be_consistent_with_the_circuit
         .communication_format = I2S_COMM_FORMAT_STAND_I2S,
         .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1,
         .dma_buf_count = 4,
@@ -288,15 +288,15 @@ void setup()
 
     WiFiClass::mode(WIFI_MODE_STA);
     WiFi.begin("ChinaNet-GdPt", "19910226");
-    ESP_LOGI(TAG, "正在联网");
+    ESP_LOGI(TAG, "Connecting to the Internet");
     while (WiFiClass::status() != WL_CONNECTED)
     {
         ESP_LOGI(TAG, ".");
         vTaskDelay(1000);
     }
-    ESP_LOGI(TAG, "联网成功");
+    ESP_LOGI(TAG, "Successful Internet connection");
 
-    // 这里的4YOzBPBOFizGvhWbqZroVA3fTXQbeWOW需要换成你自己的access token
+    // the_4yozbpbofizgvhwbqzrova3ftxqbewow_here_needs_to_be_replaced_with_your_own_access token
     client.setExtraHeaders("Authorization: Bearer; 4YOzBPBOFizGvhWbqZroVA3fTXQbeWOW");
     client.beginSSL("openspeech.bytedance.com", 443, "/api/v2/asr");
     client.onEvent(eventCallback);
@@ -311,25 +311,25 @@ void loop()
     if (Serial.available() > 0)
     {
         Serial.readStringUntil('\n');
-        ESP_LOGI(TAG, "开始录音，请说话，持续时间5s...");
-        // 录制100次，每次录制50ms的音频
+        ESP_LOGI(TAG, "Start recording, please_speak, duration_5s...");
+        // recorded_100_times，record_50ms_of_audio_each_time
         for (int i = 0; i < 100; i++)
         {
             const esp_err_t err = i2s_read(MICROPHONE_I2S_NUM,
                                            buffer,
-                                           CHUNK_SIZE * sizeof(int16_t), // 每次录取50ms音频
+                                           CHUNK_SIZE * sizeof(int16_t), // var_50ms_audio_is_admitted_each_time
                                            &bytesRead,
                                            portMAX_DELAY);
             if (err == ESP_OK)
             {
-                // 录到的音频，直接发往环形缓冲区
+                // recorded_audio，sent_directly_to_the_ring_buffer
                 BaseType_t result = xRingbufferSend(ringBuffer, buffer, bytesRead, portMAX_DELAY);
                 if (result != pdTRUE)
                 {
-                    ESP_LOGE(TAG, "将录音数据发送到RingBuffer失败");
+                    ESP_LOGE(TAG, "Failed to send recording data to RingBuffer");
                 }
             }
         }
-        ESP_LOGI(TAG, "录音结束");
+        ESP_LOGI(TAG, "Recording ends");
     }
 }

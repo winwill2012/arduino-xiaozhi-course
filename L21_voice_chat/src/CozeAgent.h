@@ -5,19 +5,19 @@
 #include <DoubaoTTS.h>
 #include <map>
 
-// 定义智能体返回的多个字段的分隔符
+// defines_the_separator_for_multiple_fields_returned_by_the_agent
 #define DELIMITER "|"
 
 enum LLMState {
-    Init, // 初始化状态
-    CommandCompleted, // 命令已接收完成
-    ParamsCompleted, // 参数已接收完成
-    ResponseCompleted // 回复内容已接收完成
+    Init, // initialization_status
+    CommandCompleted, // the_command_received_complete
+    ParamsCompleted, // parameter_received_complete
+    ResponseCompleted // reply_content_has_been_received
 };
 
 enum LLMEvent {
-    NormalChar, // 接收到普通字符
-    Delimiter, // 遇到字段分隔符
+    NormalChar, // normal_characters_received
+    Delimiter, // encounter_field_separator
 };
 
 class CozeAgent {
@@ -40,7 +40,7 @@ public:
 
 private:
     const char *TAG = "CozeAgent";
-    // 状态转移路由
+    // status_transfer_routing
     std::map<std::pair<LLMState, LLMEvent>, LLMState> _stateTransferRouterMap;
     DoubaoTTS *_tts;
     String _command;

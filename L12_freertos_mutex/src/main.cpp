@@ -7,7 +7,7 @@ SemaphoreHandle_t mutex;
 
 void count1(void* ptr)
 {
-    Serial.println("任务1开始计数");
+    Serial.println("Task 1 starts counting");
     for (int i = 0; i < 10000; i++)
     {
         // if (xSemaphoreTakeRecursive(mutex, portMAX_DELAY) == pdTRUE)
@@ -23,7 +23,7 @@ void count1(void* ptr)
 
 void count2(void* ptr)
 {
-    Serial.println("任务2开始计数");
+    Serial.println("Task 2 starts counting");
     for (int i = 0; i < 10000; i++)
     {
         // if (xSemaphoreTakeRecursive(mutex, portMAX_DELAY) == pdTRUE)
@@ -47,15 +47,15 @@ void setup()
     semaphore2 = xSemaphoreCreateBinary();
     mutex = xSemaphoreCreateMutex();
 
-    // 创建两个计数任务，每个任务分别往totalCount上累加10000
+    // create_two_counting_tasks，each_task_is_accumulated_to_totalcount_by_10000
     xTaskCreatePinnedToCore(count1, "count-task1", 1024, nullptr, 1, nullptr, 0);
     xTaskCreatePinnedToCore(count2, "count-task2", 1024, nullptr, 1, nullptr, 1);
 
-    // 等待两个任务都全部结束
+    // wait_for_both_tasks_to_end
     xSemaphoreTake(semaphore1, portMAX_DELAY);
     xSemaphoreTake(semaphore2, portMAX_DELAY);
 
-    // 打印最终计数值（期望是20000）
+    // print_the_final_count_value（expected_to_be_20000）
     Serial.printf("total count = %d\n", totalCount);
 }
 

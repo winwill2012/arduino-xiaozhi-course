@@ -332,15 +332,15 @@ void test_spangroup_chinese_break_line(void)
     lv_obj_set_width(spangroup, 250);
 
     lv_span_t * span1 = lv_spangroup_add_span(spangroup);
-    lv_span_set_text(span1, "八百标兵奔北坡");
+    lv_span_set_text(span1, "Eight hundred models heading to the north slope");
     lv_span_t * span2 = lv_spangroup_add_span(spangroup);
-    lv_span_set_text(span2, "炮兵并排北边跑");
+    lv_span_set_text(span2, "Artillery runs side by side in the north");
     lv_style_set_text_color(&span2->style, lv_palette_main(LV_PALETTE_RED));
     lv_span_t * span3 = lv_spangroup_add_span(spangroup);
-    lv_span_set_text(span3, "中英文测试。The quick brown fox jumps over a lazy dog. ");
+    lv_span_set_text(span3, "Chinese and English test. The quick brown fox jumps over a lazy dog.");
     lv_style_set_text_color(&span3->style, lv_palette_main(LV_PALETTE_BLUE));
     lv_span_t * span4 = lv_spangroup_add_span(spangroup);
-    lv_span_set_text(span4, "abcdefghijklmn中英文测试");
+    lv_span_set_text(span4, "abcdefghijklmn Chinese and English test");
     lv_style_set_text_color(&span4->style, lv_palette_main(LV_PALETTE_GREEN));
 
     TEST_ASSERT_EQUAL_SCREENSHOT("widgets/span_07.png");

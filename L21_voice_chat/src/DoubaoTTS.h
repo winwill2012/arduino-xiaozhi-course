@@ -5,7 +5,7 @@
 
 constexpr uint8_t defaultHeader[] = {0x11, 0x10, 0x10, 0x00};
 
-// 用于描述一个从云端返回的音频数据包
+// used_to_describe_an_audio_packet_returned_from_the_cloud
 struct PlayAudioTask {
     size_t length;
     int16_t *data;
@@ -29,10 +29,10 @@ public:
 
 private:
     const char *TAG = "DoubaoTTS";
-    // 用于保存音频播放任务的队列
+    // queue_to_save_audio_playback_tasks
     QueueHandle_t playAudioQueue = xQueueCreate(10, sizeof(PlayAudioTask));;
 
-    // 用于表示语音合成任务是否结束的二值信号量，也可以使用EventGroup实现
+    // binary_semaphore_used_to_indicate_whether_the_speech_synthesis_task_has_ended，you_can_also_use_eventgroup_to_implement_it
     SemaphoreHandle_t taskFinished = xSemaphoreCreateBinary();
 
     volatile bool _isConnecting = false;

@@ -33,7 +33,7 @@ std::string getChipId(const char* prefix)
 {
     std::string content{prefix ? prefix : ""};
     const std::size_t size = content.length();
-    content.resize(size + 12); // mac 地址 6 * 2
+    content.resize(size + 12); // mac address 6 * 2
     uint8_t buffer[6];
     esp_efuse_mac_get_default(buffer);
     sprintf(&content.at(size), "%02X%02X%02X%02X%02X%02X", buffer[0], buffer[1],
@@ -53,7 +53,7 @@ std::vector<uint8_t> uint32ToUint8Array(const uint32_t size)
 
 std::pair<int, size_t> findMinIndexOfDelimiter(const String& input)
 {
-    // 定义需要处理的中英文标点集合
+    // define_a_collection_of_chinese_and_english_punctuation_points_to_be_processed
     const std::vector<String> delimiters = {"，", "。", "！", "：", "；", "？"};
 
     int minIndex = -1;

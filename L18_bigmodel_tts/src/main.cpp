@@ -10,32 +10,33 @@
 #define MAX98357_LRC      40
 #define MAX98357_BCLK     39
 
-/**
- * 使用例程需要修改如下：
- * 1、112~113行，从豆包语音技术控制台获取自己的相关信息替换
- * 2、237行，修改为自己的WiFi配置信息
- * 3、246行，其中的Token换成自己的
- */
+/*
+*
+ * use_routines_need_to_be_modified_as_follows：
+* 1. Lines 112~113, get_your_own_relevant_information_from_doubao_voice_technology_console_to_replace
+* 2. Line 237, modify_your_own_wifi_configuration_information
+* 3. Line 246, change_the_token_to_your_own
+*/
 auto TAG = "TTS";
 constexpr uint8_t defaultHeader[] = {0x11, 0x10, 0x10, 0x00};
 
-// 用于保存音频播放任务的队列
+// queue_to_save_audio_playback_tasks
 QueueHandle_t playAudioQueue;
 
-// 用于表示语音合成任务是否结束的二值信号量，也可以使用EventGroup实现
+// binary_semaphore_used_to_indicate_whether_the_speech_synthesis_task_has_ended，you_can_also_use_eventgroup_to_implement_it
 SemaphoreHandle_t taskFinished;
 
-// websocket客户端
+// websocket client
 WebSocketsClient client;
 
-// 用于描述一个从云端返回的音频数据包
+// used_to_describe_an_audio_packet_returned_from_the_cloud
 struct PlayAudioTask
 {
     size_t length;
     int16_t* data;
 };
 
-// 用于解析云端下发的语音合成数据包
+// used_to_parse_voice_synthesis_data_packets_sent_in_the_cloud
 void parseResponse(const uint8_t* response)
 {
     const uint8_t messageType = response[1] >> 4;
@@ -60,13 +61,13 @@ void parseResponse(const uint8_t* response)
                     memcpy(task.data, payload, payloadSize);
                     if (xQueueSend(playAudioQueue, &task, portMAX_DELAY) != pdPASS)
                     {
-                        ESP_LOGE(TAG, "发送音频播放任务到队列失败: %d", task.length);
-                        free(task.data); // 发送到队列失败，则生产者负责将内存回收
+                        ESP_LOGE(TAG, "Failed to send audio playback task to queue: %d", task.length);
+                        free(task.data); // send_to_queue_failed，the_producer_is_responsible_for_retrieving_the_memory
                     }
                 }
                 if (sequenceNumber < 0)
                 {
-                    ESP_LOGD(TAG, "语音合成任务结束");
+                    ESP_LOGD(TAG, "Voice synthesis task ends");
                     xSemaphoreGive(taskFinished);
                 }
             }
@@ -74,11 +75,11 @@ void parseResponse(const uint8_t* response)
         }
     case 0b1111:
         {
-            // Error message from server (例如错误的消息类型，不支持的序列化方法等等)
+            // Error message from server (for_example_the_wrong_message_type，unsupported_serialization_methods_etc)
             const uint8_t errorCode = readInt32(payload);
             const uint8_t messageSize = readInt32(payload + 4);
             const unsigned char* errMessage = payload + 8;
-            ESP_LOGD(TAG, "语音合成失败, code: %d, 原因: %s", errorCode, String(errMessage, messageSize).c_str());
+            ESP_LOGD(TAG, "Speech synthesis failed, code: %d, reason: %s", errorCode, String(errMessage, messageSize).c_str());
             xSemaphoreGive(taskFinished);
             break;
         }
@@ -134,15 +135,15 @@ String buildFullClientRequest(const String& text)
 
 void tts(const String& text)
 {
-    ESP_LOGD(TAG, "开始语音合成: %s", text.c_str());
-    // 等待websocket建立连接
+    ESP_LOGD(TAG, "Start speech synthesis: %s", text.c_str());
+    // wait_for_the_websocket_to_establish_a_connection
     while (!client.isConnected())
     {
-        // websocket的连接逻辑在loop函数中，这里持续等待，直到连接建立
+        // The connection logic of websocket is in the loop function, keep_waiting_here, until_the_connection_is_established
         client.loop();
         vTaskDelay(1);
     }
-    // 发送语音合成数据包
+    // send_voice_synthesis_packets
     const String payloadStr = buildFullClientRequest(text);
     uint8_t payload[payloadStr.length()];
     for (int i = 0; i < payloadStr.length(); i++)
@@ -151,49 +152,49 @@ void tts(const String& text)
     }
     payload[payloadStr.length()] = '\0';
 
-    // 获取数据包长度，转换成4字节数组
+    // get_packet_length，convert_to_a_4byte_array
     const uint32_t payloadSize = payloadStr.length();
     std::vector<uint8_t> payloadLength = uint32ToUint8Array(payloadSize);
 
-    // 先写入四字节Header，可参考官方文档: https://www.volcengine.com/docs/6561/1257584
+    // write_the_fourbyte_header_first，please_refer_to_the_official_documentation: https://www.volcengine.com/docs/6561/1257584
     std::vector<uint8_t> clientRequest(defaultHeader, defaultHeader + sizeof(defaultHeader));
-    // 再写入4字节数据包长度
+    // write_another_4_byte_packet_length
     clientRequest.insert(clientRequest.end(), payloadLength.begin(), payloadLength.end());
-    // 再写入数据包
+    // write_to_the_packet
     clientRequest.insert(clientRequest.end(), payload, payload + sizeof(payload));
 
     if (!client.sendBIN(clientRequest.data(), clientRequest.size()))
     {
-        ESP_LOGE(TAG, "发送语音合成请求数据包失败: %s", text.c_str());
+        ESP_LOGE(TAG, "Failed to send voice synthesis request packet: %s", text.c_str());
         xSemaphoreGive(taskFinished);
         return;
     }
-    // 持续等待语音合成任务结束
+    // keep_waiting_for_the_voice_synthesis_task_to_end
     while (xSemaphoreTake(taskFinished, pdMS_TO_TICKS(1)) == pdFALSE)
     {
-        client.loop(); // 持续调用loop函数接收云端下发的数据包，直到收到最后一个包任务结束
+        client.loop(); // continuously_call_the_loop_function_to_receive_data_packets_sent_by_the_cloud，until_the_last_package_task_is_received
         vTaskDelay(1);
     }
     client.disconnect();
 }
 
-// 用于消费音频播放任务队列，从队列取出音频数据，通过I2S播放
+// used_to_consume_audio_playback_task_queue，extract_audio_data_from_queue，play_through_i2s
 void playAudio(void* ptr)
 {
     PlayAudioTask task{};
     size_t bytesWritten;
     while (true)
     {
-        // 持续从队列取出播放任务
+        // continuously_remove_playback_tasks_from_the_queue
         if (xQueueReceive(playAudioQueue, &task, portMAX_DELAY) == pdPASS)
         {
-            // 写入I2S完成播放
+            // write_to_i2s_to_complete_playback
             const esp_err_t result = i2s_write(MAX98357_I2S_NUM,
                                                task.data,
                                                task.length * sizeof(int16_t),
                                                &bytesWritten,
                                                portMAX_DELAY);
-            // 播放完成记得释放内存（内存是生产者申请的，消费者处理完要释放）
+            // remember_to_release_the_memory_after_playing（the_memory_is_applied_by_the_producer，consumers_need_to_release_after_processing）
             free(task.data);
             if (result != ESP_OK)
             {
@@ -213,7 +214,7 @@ void setup()
         .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
         .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT,
         .communication_format = I2S_COMM_FORMAT_STAND_I2S,
-        .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1, // 中断优先级，如果对实时性要求高，可以调高优先级
+        .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1, // interrupt_priority，if_the_realtime_requirements_are_high，priority_can_be_raised
         .dma_buf_count = 4,
         .dma_buf_len = 1024,
         .tx_desc_auto_clear = true
@@ -233,15 +234,15 @@ void setup()
     playAudioQueue = xQueueCreate(10, sizeof(PlayAudioTask));
 
     WiFiClass::mode(WIFI_MODE_STA);
-    // 请更换成你自己的wifi账号和密码
+    // please_change_it_to_your_own_wifi_account_and_password
     WiFi.begin("ChinaNet-GdPt", "19910226");
-    ESP_LOGI(TAG, "正在联网");
+    ESP_LOGI(TAG, "Connecting to the Internet");
     while (WiFiClass::status() != WL_CONNECTED)
     {
         ESP_LOGI(TAG, ".");
         vTaskDelay(1000);
     }
-    ESP_LOGI(TAG, "联网成功");
+    ESP_LOGI(TAG, "Successful Internet connection");
 
     client.setExtraHeaders("Authorization: Bearer; 4YOzBPBOFizGvhWbqZroVA3fTXQbeWOW");
     client.beginSSL("openspeech.bytedance.com", 443, "/api/v1/tts/ws_binary");
@@ -256,9 +257,9 @@ void loop()
     if (Serial.available())
     {
         Serial.readStringUntil('\n');
-        ESP_LOGI(TAG, "开始语音合成");
-        tts("暮色漫过青瓦时，檐角铜铃晃出细碎的光。风掠过老槐树的年轮，把去年夹在诗集里的银杏叶吹成黄蝶，"
-            "扑簌簌落进旧藤椅的褶皱 —— 那里还留着你晒暖的温度。露水在草尖凝结成星子，远处炊烟正牵着暮色往山坳里走，"
-            "像极了你走时系在篱笆上的蓝布条，在记忆里飘成一弯瘦月。");
+        ESP_LOGI(TAG, "Start speech synthesis");
+        tts("As the twilight passes the blue tiles, the_copper_bell_at_the_eaves_shaking_out_a_fine_light. the_wind_swept_through_the_old_locust_trees_annual_ring, blowing the ginkgo leaves sandwiched in the poetry collection last year into yellow butterflies,"
+            "The wrinkles of the old rattan chair fell into the folds — there_is_still_a_warm_temperature_for_you_to_stay_there. dew_condenses_into_stars_on_the_tip_of_the_grass, the smoke from the distance was leading the twilight into the valley,"
+            "It's like the blue cloth strips tied to the fence when you walk, floating into a thin moon in your memory.");
     }
 }

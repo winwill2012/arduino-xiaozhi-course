@@ -21,13 +21,13 @@
 #define OPTION_GENERATE_VECTOR_OPS_STRING 0
 
 static const char * UNIVERSAL_DECLARATION_OF_HUMAN_RIGHTS_CN =
-    "鉴于对人类家庭所有成员的固有尊严及其平等的和不移的权利的承认，乃是世界自由、正义与和平的基础...";
+    "In view of the recognition of the inherent dignity of all members of the human family and its equal and unwavering rights, it is the basis of world freedom, justice and peace...";
 static const char * UNIVERSAL_DECLARATION_OF_HUMAN_RIGHTS_EN =
     "Whereas recognition of the inherent dignity and of the equal and inalienable rights of all members of the human family is the foundation of freedom, justice and peace in the world...";
 static const char * UNIVERSAL_DECLARATION_OF_HUMAN_RIGHTS_JP =
-    "人間の家族のすべての構成員の固有の尊厳と平等で譲渡不能な権利とを承認することは、自由と正義と平和の基礎である...";
+    "The inherent respect and equality of the human family members cannot be recognized by the foundation of freedom, justice and peace...";
 
-// Outline data for unicode '龘' (U+9F98)
+// Outline data for unicode 'drunk' (U+9F98)
 static const lv_freetype_outline_event_param_t outline_data_U9F98[] = {
     {NULL, 1, {5888, 6889}, {0, 0}, {0, 0}, {0, 0}},
     {NULL, 2, {6445, 6889}, {0, 0}, {0, 0}, {0, 0}},

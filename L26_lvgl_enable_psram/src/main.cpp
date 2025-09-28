@@ -39,8 +39,8 @@ static uint32_t my_tick(void)
 void setup()
 {
     Serial.begin(115200);
-    Serial.printf("LVGL初始化前内置内存大小: %d\n", heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
-    Serial.printf("LVGL初始化前PSRAM内存大小: %d\n", heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+    Serial.printf("Built-in memory size before LVGL initialization: %d\n", heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
+    Serial.printf("PSRAM memory size before LVGL initialization: %d\n", heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
     lv_init();
     ft.begin();
 
@@ -62,8 +62,8 @@ void setup()
 
     lv_demo_widgets();
 
-    Serial.printf("LVGL初始化后内置内存大小: %d\n", heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
-    Serial.printf("LVGL初始化后PSRAM内存大小: %d\n", heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+    Serial.printf("Built-in memory size after LVGL is initialized: %d\n", heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
+    Serial.printf("PSRAM memory size after LVGL initialization: %d\n", heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
 }
 
 void loop()

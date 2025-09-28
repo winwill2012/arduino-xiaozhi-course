@@ -10,11 +10,11 @@ void printMessage(void* ptr)
     Serial.println(static_cast<char*>(ptr));
     while (true)
     {
-        Serial.printf("当前任务参数: %s, 运行CPU: %d\n", static_cast<char*>(ptr), xPortGetCoreID());
+        Serial.printf("Current task parameters: %s, run_the_cpu: %d\n", static_cast<char*>(ptr), xPortGetCoreID());
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
-    // 这是第一个永久运行的任务，所以该行代码不会被运行，如果是会结束的任务，
-    // 则需要在任务的最后，删除当前任务，参数为NULL表示删除自己
+    // this_is_the_first_permanent_task，so_the_line_of_code_will_not_be_run，if_its_a_task_that_will_end，
+    // it_needs_to_be_at_the_end_of_the_task，delete_the_current_task，the_parameter_is_null_to_delete_yourself
     vTaskDelete(nullptr);
 }
 
@@ -22,41 +22,41 @@ void setup()
 {
     Serial.begin(9600);
     vTaskDelay(pdMS_TO_TICKS(3000));
-    xTaskCreate(printMessage, // 任务函数指针
-                "printMessage1", // 任务名称
-                2048, // 任务堆栈大小，简单的任务堆栈可以设置小一些，复杂的任务需要设置大一点得到堆栈，不然容易堆栈溢出
-                const_cast<char*>("这是第1个任务参数"), // 需要传递什么参数到任务处理函数中
-                1, // 任务优先级，可选范围为0-24，数字越大，优先级越高
-                &printMessageTask1); // 任务句柄，如果后续对该任务有控制需求，可以设置该参数，TaskHandle_t类型
+    xTaskCreate(printMessage, // task_function_pointer
+                "printMessage1", // task_name
+                2048, // task_stack_size，simple_task_stack_can_be_set_smaller，complex_tasks_need_to_be_set_to_get_the_stack，otherwise_it_will_easily_overflow
+                const_cast<char*>("This is the first task parameter"), // what_parameters_need_to_be_passed_into_the_task_processing_function
+                1, // task_priority，optional_range_is_0-24，the_bigger_the_number，the_higher_the_priority
+                &printMessageTask1); // task_handle, if_there_is_a_control_requirement_for_this_task_in_the_future, this_parameter_can_be_set, TaskHandle_t type
 
-    xTaskCreate(printMessage, // 任务函数指针
-                "printMessage2", // 任务名称
-                4096, // 任务堆栈大小，简单的任务堆栈可以设置小一些，复杂的任务需要设置大一点得到堆栈，不然容易堆栈溢出
-                const_cast<char*>("这是第2个任务参数"), // 需要传递什么参数到任务处理函数中
-                2, // 任务优先级，可选范围为0-24，数字越大，优先级越高
-                &printMessageTask2); // 任务句柄，如果后续对该任务有控制需求，可以设置该参数，TaskHandle_t类型
+    xTaskCreate(printMessage, // task_function_pointer
+                "printMessage2", // task_name
+                4096, // task_stack_size，simple_task_stack_can_be_set_smaller，complex_tasks_need_to_be_set_to_get_the_stack，otherwise_it_will_easily_overflow
+                const_cast<char*>("This is the second task parameter"), // what_parameters_need_to_be_passed_into_the_task_processing_function
+                2, // task_priority，optional_range_is_0-24，the_bigger_the_number，the_higher_the_priority
+                &printMessageTask2); // task_handle, if_there_is_a_control_requirement_for_this_task_in_the_future, this_parameter_can_be_set, TaskHandle_t type
 
     vTaskDelay(pdMS_TO_TICKS(5000));
-    // 5s以后，删除以上两个任务
+    // After 5s, delete_the_above_two_tasks
     vTaskDelete(printMessageTask1);
     vTaskDelete(printMessageTask2);
 
     xTaskCreatePinnedToCore(printMessage,
                             "printMessage3",
                             2048,
-                            const_cast<char*>("第3个任务参数"),
+                            const_cast<char*>("The third task parameter"),
                             1,
                             &printMessageTask3,
                             0);
     xTaskCreatePinnedToCore(printMessage,
                             "printMessage4",
                             2048,
-                            const_cast<char*>("第4个任务参数"),
+                            const_cast<char*>("The 4th task parameter"),
                             2,
                             &printMessageTask4,
                             1);
     vTaskDelay(pdMS_TO_TICKS(5000));
-    // 5s以后，删除以上两个任务
+    // After 5s, delete_the_above_two_tasks
     vTaskDelete(printMessageTask3);
     vTaskDelete(printMessageTask4);
 }

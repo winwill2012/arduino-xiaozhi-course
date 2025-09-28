@@ -22,7 +22,7 @@ void lv_example_label_3(void)
 
     lv_obj_t * cz_label = lv_label_create(lv_screen_active());
     lv_label_set_text(cz_label,
-                      "嵌入式系统（Embedded System），\n是一种嵌入机械或电气系统内部、具有专一功能和实时计算性能的计算机系统。");
+                      "Embedded System, \n is a computer system embedded in mechanical or electrical systems, with dedicated functions and real-time computing performance.");
     lv_obj_set_style_text_font(cz_label, &lv_font_source_han_sans_sc_16_cjk, 0);
     lv_obj_set_width(cz_label, 310);
     lv_obj_align(cz_label, LV_ALIGN_BOTTOM_LEFT, 5, -5);

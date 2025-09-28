@@ -1,8 +1,8 @@
-/*******************************************************************************
+/* *********************************************************************************************
  * Size: 14 px
  * Bpp: 4
- * Opts: --no-compress --no-prefilter --bpp 4 --size 14 --font SimSun.woff -r 0x20-0x7f --symbols （），盗提陽帯鼻画輕ッ冊ェル写父ぁフ結想正四O夫源庭場天續鳥れ講猿苦階給了製守8祝己妳薄泣塩帰ぺ吃変輪那着仍嗯爭熱創味保字宿捨準查達肯ァ薬得査障該降察ね網加昼料等図邪秋コ態品屬久原殊候路願楽確針上被怕悲風份重歡っ附ぷ既4黨價娘朝凍僅際洋止右航よ专角應酸師個比則響健昇豐筆歷適修據細忙跟管長令家ザ期般花越ミ域泳通些油乏ラ。營ス返調農叫樹刊愛間包知把ヤ貧橋拡普聞前ジ建当繰ネ送習渇用補ィ覺體法遊宙ョ酔余利壊語くつ払皆時辺追奇そ們只胸械勝住全沈力光ん深溝二類北面社值試9和五勵ゃ貿幾逐打課ゲて領3鼓辦発評１渉詳暇込计駄供嘛郵頃腦反構絵お容規借身妻国慮剛急乗静必議置克土オ乎荷更肉還混古渡授合主離條値決季晴東大尚央州が嗎験流先医亦林田星晩拿60旅婦量為痛テ孫う環友況玩務其ぼち揺坐一肩腰犯タょ希即果ぶ物練待み高九找やヶ都グ去」サ、气仮雑酒許終企笑録形リ銀切ギ快問滿役単黄集森毎實研喜蘇司鉛洲川条媽ノ才兩話言雖媒出客づ卻現異故り誌逮同訊已視本題ぞを横開音第席費持眾怎選元退限ー賽処喝就残無いガ多ケ沒義遠歌隣錢某雪析嬉採自透き側員予ゼ白婚电へ顯呀始均畫似懸格車騒度わ親店週維億締慣免帳電甚來園浴ゅ愈京と杯各海怒ぜ排敗挙老買7極模実紀ヒ携隻告シ並屋這孩讓質ワブ富賃争康由辞マ火於短樣削弟材注節另室ダ招擁ぃ若套底波行勤關著泊背疲狭作念推ぐ民貸祖介說ビ代温契你我レ入描變再札ソ派頭智遅私聽舉灣山伸放直安ト誕煙付符幅ふ絡她届耳飲忘参革團仕様載ど歩獲嫌息の汚交興魚指資雙與館初学年幸史位柱族走括び考青也共腕Lで販擔理病イ今逃當寺猫邊菓係ム秘示解池影ド文例斷曾事茶寫明科桃藝売便え導禁財飛替而亡到し具空寝辛業ウ府セ國何基菜厳市努張缺雲根外だ断万砂ゴ超使台实ぽ礼最慧算軟界段律像夕丈窓助刻月夏政呼ぴざ擇趣除動従涼方勉名線対存請子氏將5少否諸論美感或西者定食御表は參歳緑命進易性錯房も捕皿判中觀戦ニ緩町ピ番ず金千ろ?不た象治関ャ每看徒卒統じ手範訪押座步号ベ旁以母すほ密減成往歲件緒読歯效院种七謂凝濃嵌震喉繼クュ拭死円2積水欲如ポにさ寒道區精啦姐ア聯能足及停思壓２春且メ裏株官答概黒過氷柿戻厚ぱ党祭織引計け委暗複誘港バ失下村較続神ぇ尤強秀膝兒来績十書済化服破新廠1紹您情半式產系好教暑早め樂地休協良な哪常要揮周かエ麗境働避護ンツ香夜太見設非改広聲他検求危清彼經未在起葉控靴所差內造寄南望尺換向展備眠點完約ぎ裡分説申童優伝島机須塊日立拉,鉄軽單気信很転識支布数紙此迎受心輸坊モ處「訳三曇兄野顔戰增ナ伊列又髪両有取左毛至困吧昔赤狀相夠整別士経頼然簡ホ会發隨営需脱ヨば接永居冬迫圍甘醫誰部充消連弱宇會咲覚姉麼的増首统帶糖朋術商担移景功育庫曲總劃牛程駅犬報ロ學責因パ嚴八世後平負公げ曜陸專午之閉ぬ談ご災昨冷職悪謝對它近射敢意運船臉局難什産頗!球真記ま但蔵究制機案湖臺ひ害券男留内木驗雨施種特復句末濟キ色訴依せ百型る石牠討呢时任執飯歐宅組傳配小活ゆべ暖ズ漸站素らボ束価チ浅回女片独妹英目從認生違策僕楚ペ米こ掛む爸六状落漢プ投カ校做啊洗声探あ割体項履触々訓技ハ低工映是標速善点人デ口次可廿节宵植树端阳旦腊妇费愚劳动儿军师庆圣诞闰 --font FontAwesome5-Solid+Brands+Regular.woff -r 61441,61448,61451,61452,61452,61453,61457,61459,61461,61465,61468,61473,61478,61479,61480,61502,61507,61512,61515,61516,61517,61521,61522,61523,61524,61543,61544,61550,61552,61553,61556,61559,61560,61561,61563,61587,61589,61636,61637,61639,61641,61664,61671,61674,61683,61724,61732,61787,61931,62016,62017,62018,62019,62020,62087,62099,62212,62189,62810,63426,63650 --format lvgl -o lv_font_simsun_14_cjk.c --force-fast-kern-format
- ******************************************************************************/
+ * Opts: --no-compress --no-prefilter --bpp 4 --size 14 --font SimSun.woff -r 0x20-0x7f --symbols (), the stolen nose painting lightly written by the father, the four men's husband, the stolen house, the sky is continuous, the ape bitterness gave to the guard 8 wishes you, you are still crying, the hot and creative taste, the word "Shou" is only to check the Daken ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァ ァThe 4th party is only the right-winger of the world. The 4th party is only the right-winger. The 1st party is very happy. The 1st party is very happy. The 1st party is only the right-winger. The 1st party is very happy. The 1st party is very happy. The 1st party is only the right-winger. The 1st party is very happy. The 1st party is very happy. The 1st party is only the right-winger. The 1st party is very happy. The 1st party is very happy. The 1st party is only the right-winger. The 1st party is very happy. The 1st party is very happy. The 1st party is only happy. The 1st party is very happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is only happy. The 1st party is also happy. The 1st party is also The business is called "生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生生� Try 9 and 5 trades to fight the class 3 drums to hold review 1 Details of time to make plans to provide for the offer, the mailings, the brain-rebellion, the country's ritual is urgent, and the tranquility must be decided to set up the turquoise, the meat, and the ancient ferry will be mixed with the main separation of Ji Qingdongda Shangyangzhou がしぎ游戏同成人游戏同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人利地三同成人Is it true that the music is a certain snowy smile is taken from the side of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of the strait of The kid in the house will make the quality rich and prosperous, and the hottest child will be short-speaking and the other room will be attracted by the wave of the bottom wave, and the back is exhausted and narrow-minded. The people's finances said that you and I will change again. Listen to the sacred talisman of the sacred ふ州公司生国家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家家Yukata helps to make the lunar calendar. The fun is not allowed to be moved by the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the silence of the s The official answer is a dark persimmon thick party ritual ぱ party ritual sacred ぱ party ritual sacred ぇ博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新博新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新卡新The scattered papers are welcomed by the heart of the scattered house. "The third brother, Ye, fought and fought in the battle of the scattered house. The scattered house was also taken from the left hair and was sleepy. The red state was very similar. The whole family would find that the one who needed to leave the house in the winter was forced to keep the Ganges medical department. Urisaki's top-notch sugar-friendly businessman, the director of the Imperial College, Qunar, the director of the Urikasaka, the 19th century, and the 19th century, was held in the afternoon. The 19th century, and the 19th century was held in the afternoon. The 19th century was held in the afternoon. He was very happy to say thank you for the near-shooting of the ship. !The real record of the basketball is a scammer, but the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the scammer, the s --font Font FontAwesome5-Solid+Brands+Regular.woff -r 61441,61448,61451,61452,61452,61453,61457,61459,61461,61465,61468,61473,61478,61479,61480,61502,61507,61512,61515,61516,61517,61521,61522,61523,61524,61543,61544,61550,61552,61553,61 556,61559,61560,61561,61563,61587,61589,61636,61637,61639,61641,61664,61671,61674,61683,61724,61732,61787,61931,62016,62017,62018,62019,62020,62087,62099,62212,62189,62810,63426,63650 --format lvgl -o lv_font_simsun_14_cjk.c --force-fast-kern-format
+ ************************************************************************************************ */
 
 #ifdef LV_LVGL_H_INCLUDE_SIMPLE
     #include "lvgl.h"
@@ -20608,6 +20608,171 @@ static const uint16_t unicode_list_5[] = {
     0x2e91, 0x2e96, 0x2e99, 0x2e9c, 0x2e9d, 0x2ea3, 0x2ea4, 0x2ea8,
     0x2eaf, 0x2eb2, 0x2eba, 0x2ed4, 0x2ed6, 0x2ee9, 0x2eea, 0x2efc,
     0x2f06, 0x2f1f, 0x2f23, 0x2f26, 0x2f2e, 0x2f36, 0x2f38, 0x2f80,
+    0x2fb9, 0x2fbb, 0x2fc3, 0x2fd6, 0x3004, 0x3019, 0x3020, 0x302b,
+    0x302c, 0x3030, 0x305c, 0x3074, 0x3078, 0x307f, 0x30da, 0x3109,
+    0x3121, 0x3122, 0x3127, 0x3137, 0x3141, 0x314c, 0x3150, 0x3151,
+    0x315c, 0x315e, 0x3164, 0x3166, 0x318f, 0x3191, 0x319b, 0x31a6,
+    0x31cd, 0x31d6, 0x31da, 0x31ec, 0x31f2, 0x31fd, 0x31fe, 0x3210,
+    0x3212, 0x3218, 0x322a, 0x3266, 0x3279, 0x3299, 0x32a3, 0x32ac,
+    0x32b2, 0x32b3, 0x32b6, 0x32b8, 0x32b9, 0x32e0, 0x32e1, 0x32ec,
+    0x32ff, 0x330b, 0x334b, 0x33d2, 0x33d8, 0x33e5, 0x33eb, 0x3440,
+    0x344a, 0x344f, 0x3450, 0x3456, 0x3459, 0x3468, 0x346a, 0x3473,
+    0x3481, 0x3485, 0x3498, 0x34aa, 0x34be, 0x34c1, 0x34c8, 0x34ca,
+    0x34cd, 0x34ce, 0x34d2, 0x34d6, 0x34e0, 0x34f3, 0x34f6, 0x34f7,
+    0x34fa, 0x3507, 0x3518, 0x351f, 0x3524, 0x3525, 0x3530, 0x3531,
+    0x3536, 0x3539, 0x3540, 0x354d, 0x3553, 0x357a, 0x357f, 0x3580,
+    0x3585, 0x358b, 0x3598, 0x35a2, 0x35a7, 0x35a8, 0x35d8, 0x35ed,
+    0x3603, 0x3605, 0x3609, 0x360f, 0x3610, 0x3611, 0x3614, 0x3619,
+    0x361a, 0x361c, 0x361e, 0x362c, 0x362e, 0x3630, 0x3639, 0x363b,
+    0x363c, 0x363d, 0x363e, 0x364b, 0x3661, 0x3662, 0x3670, 0x3672,
+    0x3676, 0x3680, 0x3682, 0x36a1, 0x36a8, 0x36ad, 0x36e1, 0x36f6,
+    0x3702, 0x370c, 0x3710, 0x3722, 0x3732, 0x373b, 0x374a, 0x374d,
+    0x3754, 0x3759, 0x37ae, 0x37c1, 0x37ff, 0x381e, 0x382d, 0x386b,
+    0x387e, 0x3886, 0x388e, 0x3893, 0x38dc, 0x38e9, 0x3913, 0x392a,
+    0x3932, 0x3934, 0x393b, 0x394a, 0x395c, 0x3970, 0x3a32, 0x3a43,
+    0x3a5d, 0x3a61, 0x3a72, 0x3a73, 0x3a74, 0x3a75, 0x3a76, 0x3a7a,
+    0x3a80, 0x3a83, 0x3a84, 0x3a88, 0x3a8c, 0x3a9b, 0x3a9c, 0x3ac6,
+    0x3ade, 0x3adf, 0x3ae0, 0x3ae5, 0x3aec, 0x3b20, 0x3b22, 0x3b25,
+    0x3b28, 0x3b45, 0x3b48, 0x3b49, 0x3b53, 0x3b6b, 0x3b71, 0x3b8b,
+    0x3b99, 0x3ba3, 0x3bca, 0x3bcc, 0x3bd2, 0x3bdb, 0x3be6, 0x3bf3,
+    0x3bf4, 0x3bf9, 0x3c04, 0x3c1c, 0x3c28, 0x3c43, 0x3c4c, 0x3c4f,
+    0x3c52, 0x3c56, 0x3c85, 0x3c88, 0x3c99, 0x3ccd, 0x3d02, 0x3d08,
+    0x3d16, 0x3d18, 0x3d19, 0x3d1a, 0x3d2c, 0x3d32, 0x3d3a, 0x3d40,
+    0x3d67, 0x3da1, 0x3da7, 0x3dae, 0x3e10, 0x3e33, 0x3e49, 0x3ed4,
+    0x3ef0, 0x3f74, 0x3f7c, 0x3f8e, 0x3fca, 0x3fcb, 0x4032, 0x4047,
+    0x406a, 0x40c2, 0x40f0, 0x413e, 0x4147, 0x4149, 0x4158, 0x416c,
+    0x4171, 0x417a, 0x418a, 0x41bd, 0x41c0, 0x41c7, 0x41d1, 0x41fd,
+    0x41fe, 0x423c, 0x4250, 0x4283, 0x42ba, 0x430f, 0x4314, 0x4317,
+    0x43c1, 0x4429, 0x442b, 0x4430, 0x4433, 0x4434, 0x4439, 0x4441,
+    0x4442, 0x4444, 0x4446, 0x4448, 0x444b, 0x444c, 0x445d, 0x446a,
+    0x447b, 0x447c, 0x4481, 0x4487, 0x44c3, 0x44d6, 0x44ec, 0x458b,
+    0x458d, 0x458e, 0x458f, 0x4595, 0x4597, 0x45d0, 0x45e8, 0x45ff,
+    0x4605, 0x4609, 0x461c, 0x4630, 0x4631, 0x464f, 0x4651, 0x46f6,
+    0x46fe, 0x4704, 0x4713, 0x4725, 0x4745, 0x47cb, 0x484b, 0x484d,
+    0x484f, 0x4867, 0x486e, 0x486f, 0x487e, 0x4892, 0x48d1, 0x48d2,
+    0x48dc, 0x48de, 0x48e2, 0x48e9, 0x490c, 0x491c, 0x493f, 0x495e,
+    0x4987, 0x498b, 0x49a4, 0x49dc, 0x49ea, 0x49f6, 0x4a00, 0x4a22,
+    0x4a37, 0x4a3d, 0x4a57, 0x4a5a, 0x4a65, 0x4a67, 0x4aa8, 0x4ab2,
+    0x4ad1, 0x4ad5, 0x4b32, 0x4b84, 0x4bcf, 0x4be7, 0x4c0c, 0x4c11,
+    0x4c15, 0x4c2a, 0x4c31, 0x4c41, 0x4c4a, 0x4c53, 0x4c55, 0x4c5d,
+    0x4c61, 0x4c72, 0x4c77, 0x4c82, 0x4c86, 0x4ca4, 0x4cab, 0x4cbe,
+    0x4cc3, 0x4ce2, 0x4ce3, 0x4ceb, 0x4cf1, 0x4cfa, 0x4d05, 0x4d4e,
+    0x4d4f, 0x4d65, 0x4d81, 0x4d8d, 0x4d9d, 0x4df0, 0x4e4b, 0x4e7f,
+    0x4e9f, 0x4eba, 0x4ee3, 0x4f12, 0x4f14, 0x4f16, 0x4f1d, 0x4f44,
+    0x4f6f, 0x4f80, 0x4f83, 0x4f88, 0x4f8e, 0x4f9a, 0x4fba, 0x4fc0,
+    0x4fc3, 0x4fdd, 0x5009, 0x500e, 0x5042, 0x505b, 0x5066, 0x5077,
+    0x5081, 0x50ae, 0x50da, 0x50fb, 0x5104, 0x510b, 0x5118, 0x5119,
+    0x511a, 0x513b, 0x513d, 0x514a, 0x5180, 0x5183, 0x5193, 0x51c2,
+    0x51f6, 0x51f7, 0x5202, 0x5247, 0x5288, 0x52e4, 0x52ed, 0x534e,
+    0x535a, 0x5368, 0x5446, 0x5495, 0x54bd, 0x54ee, 0x5518, 0x5566,
+    0x575d, 0x5764, 0x5779, 0x57bc, 0x57e0, 0x57ed, 0x57f2, 0x580e,
+    0x5818, 0x5890, 0x5892, 0x589c, 0x58a0, 0x58a7, 0x58ab, 0x58bb,
+    0x58cb, 0x58d1, 0x58e3, 0x58f4, 0x58f7, 0x5911, 0x5919, 0x591b,
+    0x591f, 0x5924, 0x5929, 0x593b, 0x593e, 0x5942, 0x5944, 0x5945,
+    0x5966, 0x5977, 0x5982, 0x5983, 0x5984, 0x599d, 0x599e, 0x59a6,
+    0x59a9, 0x59af, 0x59bb, 0x59bd, 0x59be, 0x59c1, 0x59c3, 0x59d0,
+    0x59d8, 0x59dc, 0x59e7, 0x5a09, 0x5a13, 0x5a2c, 0x5a2e, 0x5a69,
+    0x5a81, 0x5a88, 0x5a9b, 0x5aa4, 0x5ab2, 0x5aef, 0x5b61, 0x5b72,
+    0x5bb1, 0x5bb2, 0x5bb8, 0x5bba, 0x5bbd, 0x5bc8, 0x5bc9, 0x5bcc,
+    0x5bd0, 0x5bd4, 0x5bd8, 0x5bfb, 0x5c0e, 0x5c4a, 0x5c75, 0x5c81,
+    0x5c88, 0x5c96, 0x5c9b, 0x5cb4, 0x5cc4, 0x5cf0, 0x5d00, 0x5dbc,
+    0x5ddb, 0x5df0, 0x5df3, 0x5e0e, 0x5e14, 0x5e1a, 0x5e26, 0x5e3b,
+    0x5e49, 0x5eac, 0x5eaf, 0x5eb7, 0x5ec3, 0x5ecb, 0x5ecd, 0x5edf,
+    0x5ee2, 0x5ee5, 0x5efc, 0x5f0e, 0x5f11, 0x5f12, 0x5f14, 0x5f20,
+    0x5f21, 0x5f2a, 0x5f2b, 0x5f30, 0x5f31, 0x5f34, 0x5f3f, 0x5f42,
+    0x5f43, 0x5f56, 0x5f5b, 0x5f5c, 0x5f5f, 0x5f64, 0x5f65, 0x5f66,
+    0x5f71, 0x5f7a, 0x5f89, 0x5f90, 0x5f95, 0x5f9b, 0x5fb4, 0x5fbb,
+    0x5ff9, 0x6006, 0x600e, 0x605e, 0x6063, 0x6065, 0x6089, 0x60bc,
+    0x60de, 0x60df, 0x60e0, 0x60e2, 0x60ee, 0x6155, 0x616c, 0x6191,
+    0x6233, 0x6240, 0x6243, 0x6488, 0x649a, 0x649c, 0x64a4, 0x64b3,
+    0x64ed, 0x6501, 0x6544, 0x6555, 0x655e, 0x6561, 0x6573, 0x6575,
+    0x6589, 0x658e, 0x659f, 0x65ac, 0x65ad, 0x65b4, 0x65b9, 0x65cc,
+    0x65d7, 0x65e2, 0x65e7, 0x65ea, 0x65f3, 0x65f4, 0x65f9, 0x65fb,
+    0x6603, 0x660c, 0x6611, 0x6618, 0x6663, 0x666a, 0x666f, 0x6673,
+    0x667a, 0x6685, 0x6704, 0x6710, 0x6714, 0x6716, 0x6719, 0x6728,
+    0x6729, 0x673e, 0x674d, 0x675d, 0x6765, 0x6769, 0x676f, 0x6780,
+    0x67b9, 0x67ec, 0x67f0, 0x6800, 0x6803, 0x6839, 0x68a7, 0x68aa,
+    0x68d5, 0x68d6, 0x6923, 0x6924, 0x6968, 0x69e5, 0x69e9, 0x69fb,
+    0x6a6b, 0x6bf6, 0x6da8, 0x6dcd, 0x6dd5, 0x6de3, 0x6def, 0x6df9,
+    0x6e24, 0x6e4c, 0xbf12, 0xbf19, 0xbf1c, 0xbf1d, 0xbf1e, 0xbf22,
+    0xbf24, 0xbf26, 0xbf2a, 0xbf2d, 0xbf32, 0xbf37, 0xbf38, 0xbf39,
+    0xbf4f, 0xbf54, 0xbf59, 0xbf5c, 0xbf5d, 0xbf5e, 0xbf62, 0xbf63,
+    0xbf64, 0xbf65, 0xbf78, 0xbf79, 0xbf7f, 0xbf81, 0xbf82, 0xbf85,
+    0xbf88, 0xbf89, 0xbf8a, 0xbf8c, 0xbfa4, 0xbfa6, 0xbfd5, 0xbfd6,
+    0xbfd8, 0xbfda, 0xbff1, 0xbff8, 0xbffb, 0xc004, 0xc02d, 0xc035,
+    0xc06c, 0xc0fc, 0xc151, 0xc152, 0xc153, 0xc154, 0xc155, 0xc198,
+    0xc1a4, 0xc1fe, 0xc215, 0xc46b, 0xc6d3, 0xc7b3, 0xce19, 0xce1a,
+    0xce1d, 0xce22, 0xce23
+};
+
+/*Collect the unicode lists and glyph_id offsets*/
+static const lv_font_fmt_txt_cmap_t cmaps[] = {
+    {
+        .range_start = 32, .range_length = 96, .glyph_id_start = 1,
+        .unicode_list = NULL, .glyph_id_ofs_list = NULL, .list_length = 0, .type = LV_FONT_FMT_TXT_CMAP_FORMAT0_TINY
+    },
+    {
+        .range_start = 12289, .range_length = 72, .glyph_id_start = 97,
+        .unicode_list = unicode_list_1, .glyph_id_ofs_list = NULL, .list_length = 12, .type = LV_FONT_FMT_TXT_CMAP_SPARSE_TINY
+    },
+    {
+        .range_start = 12362, .range_length = 24, .glyph_id_start = 109,
+        .unicode_list = NULL, .glyph_id_ofs_list = NULL, .list_length = 0, .type = LV_FONT_FMT_TXT_CMAP_FORMAT0_TINY
+    },
+    {
+        .range_start = 12387, .range_length = 43, .glyph_id_start = 133,
+        .unicode_list = NULL, .glyph_id_ofs_list = NULL, .list_length = 0, .type = LV_FONT_FMT_TXT_CMAP_FORMAT0_TINY
+    },
+    {
+        .range_start = 12431, .range_length = 95, .glyph_id_start = 176,
+        .unicode_list = NULL, .glyph_id_ofs_list = glyph_id_ofs_list_4, .list_length = 95, .type = LV_FONT_FMT_TXT_CMAP_FORMAT0_FULL
+    },
+    {
+        .range_start = 12527, .range_length = 52772, .glyph_id_start = 248,
+        .unicode_list = unicode_list_5, .glyph_id_ofs_list = NULL, .list_length = 1187, .type = LV_FONT_FMT_TXT_CMAP_SPARSE_TINY
+    }
+};
+
+/*--------------------
+ *  ALL CUSTOM DATA
+ *--------------------*/
+
+#if LVGL_VERSION_MAJOR >= 8
+/*Store all the custom data of the font*/
+
+static const lv_font_fmt_txt_dsc_t font_dsc = {
+#else
+static lv_font_fmt_txt_dsc_t font_dsc = {
+#endif
+    .glyph_bitmap = glyph_bitmap,
+    .glyph_dsc = glyph_dsc,
+    .cmaps = cmaps,
+    .kern_dsc = NULL,
+    .kern_scale = 0,
+    .cmap_num = 6,
+    .bpp = 4,
+    .kern_classes = 0,
+    .bitmap_format = 0,
+
+};
+
+/*-----------------
+ *  PUBLIC FONT
+ *----------------*/
+
+#ifdef _MSC_VER
+    #pragma deprecated(lv_font_simsun_14_cjk)
+#else
+    #warning "LV_FONT_SIMSUN_14_CJK is deprecated, use LV_FONT_SOURCE_HAN_SANS_SC_14_CJK instead."
+#endif
+
+/*Initialize a public general font descriptor*/
+#if LVGL_VERSION_MAJOR >= 8
+const lv_font_t lv_font_simsun_14_cjk = {
+#else
+lv_font_t lv_font_simsun_14_cjk = {
+#endif
+    .get_glyph_dsc = lv_font_get_glyph_dsc_fmt_txt,    /*Function pointer to get glyph'  0x2f06, 0x2f1f, 0x2f23, 0x2f26, 0x2f2e, 0x2f36, 0x2f38, 0x2f80,
     0x2fb9, 0x2fbb, 0x2fc3, 0x2fd6, 0x3004, 0x3019, 0x3020, 0x302b,
     0x302c, 0x3030, 0x305c, 0x3074, 0x3078, 0x307f, 0x30da, 0x3109,
     0x3121, 0x3122, 0x3127, 0x3137, 0x3141, 0x314c, 0x3150, 0x3151,

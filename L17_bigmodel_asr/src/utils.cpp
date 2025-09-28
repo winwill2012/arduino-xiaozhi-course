@@ -33,7 +33,7 @@ std::string getChipId(const char* prefix)
 {
     std::string content{prefix ? prefix : ""};
     const std::size_t size = content.length();
-    content.resize(size + 12); // mac 地址 6 * 2
+    content.resize(size + 12); // mac address 6 * 2
     uint8_t buffer[6];
     esp_efuse_mac_get_default(buffer);
     sprintf(&content.at(size), "%02X%02X%02X%02X%02X%02X", buffer[0], buffer[1],

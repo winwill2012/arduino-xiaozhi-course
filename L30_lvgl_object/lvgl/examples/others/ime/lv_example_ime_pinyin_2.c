@@ -49,7 +49,7 @@ void lv_example_ime_pinyin_2(void)
     /*Try using ime_pinyin to output the Chinese below in the ta1 above*/
     lv_obj_t * cz_label = lv_label_create(lv_screen_active());
     lv_label_set_text(cz_label,
-                      "嵌入式系统（Embedded System），\n是一种嵌入机械或电气系统内部、具有专一功能和实时计算性能的计算机系统。");
+                      "Embedded System, \n is a computer system embedded in mechanical or electrical systems, with dedicated functions and real-time computing performance.");
     lv_obj_set_style_text_font(cz_label, &lv_font_source_han_sans_sc_16_cjk, 0);
     lv_obj_set_width(cz_label, 310);
     lv_obj_align_to(cz_label, ta1, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 0);

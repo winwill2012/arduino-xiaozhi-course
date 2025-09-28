@@ -19,7 +19,7 @@ void DoubaoTTS::begin() {
             .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
             .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT,
             .communication_format = I2S_COMM_FORMAT_STAND_I2S,
-            .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1, // 中断优先级，如果对实时性要求高，可以调高优先级
+            .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1, // interrupt_priority，if_the_realtime_requirements_are_high，priority_can_be_raised
             .dma_buf_count = 4,
             .dma_buf_len = 1024,
             .tx_desc_auto_clear = true
@@ -35,11 +35,11 @@ void DoubaoTTS::begin() {
     i2s_driver_install(MAX98357_I2S_NUM, &max98357_i2s_config, 0, nullptr);
     i2s_set_pin(MAX98357_I2S_NUM, &max98357_gpio_config);
 
-    // TODO: 这里的key修改成自己的
+    // TODO: change_the_key_here_to_your_own
     setExtraHeaders("Authorization: Bearer; 4YOzBPBOFizGvhWbqZroVA3fTXQbeWOW");
     beginSSL("openspeech.bytedance.com", 443, "/api/v1/tts/ws_binary");
 
-    // 如下使用了C++中的lambda表达式语法
+    // use_c_as_follows++lambda_expression_syntax
     onEvent([this](WStype_t type, uint8_t *payload, size_t length) {
         this->eventCallback(type, payload, length);
     });
@@ -50,7 +50,7 @@ void DoubaoTTS::begin() {
     }, "playAudio", 4096, this, 1, nullptr);
 }
 
-// 用于解析云端下发的语音合成数据包
+// used_to_parse_voice_synthesis_data_packets_sent_in_the_cloud
 void DoubaoTTS::parseResponse(const uint8_t *response) const {
     const uint8_t messageType = response[1] >> 4;
     const uint8_t messageTypeSpecificFlags = response[1] & 0x0f;
@@ -69,23 +69,23 @@ void DoubaoTTS::parseResponse(const uint8_t *response) const {
                     task.data = static_cast<int16_t *>(ps_malloc(payloadSize));
                     memcpy(task.data, payload, payloadSize);
                     if (xQueueSend(playAudioQueue, &task, portMAX_DELAY) != pdPASS) {
-                        ESP_LOGE(TAG, "发送音频播放任务到队列失败: %d", task.length);
-                        free(task.data); // 发送到队列失败，则生产者负责将内存回收
+                        ESP_LOGE(TAG, "Failed to send audio playback task to queue: %d", task.length);
+                        free(task.data); // send_to_queue_failed，the_producer_is_responsible_for_retrieving_the_memory
                     }
                 }
                 if (sequenceNumber < 0) {
-                    ESP_LOGV(TAG, "语音合成任务结束");
+                    ESP_LOGV(TAG, "Voice synthesis task ends");
                     xSemaphoreGive(taskFinished);
                 }
             }
             break;
         }
         case 0b1111: {
-            // Error message from server (例如错误的消息类型，不支持的序列化方法等等)
+            // Error message from server (for_example_the_wrong_message_type，unsupported_serialization_methods_etc)
             const uint8_t errorCode = readInt32(payload);
             const uint8_t messageSize = readInt32(payload + 4);
             const unsigned char *errMessage = payload + 8;
-            ESP_LOGD(TAG, "语音合成失败, code: %d, 原因: %s", errorCode, String(errMessage, messageSize).c_str());
+            ESP_LOGD(TAG, "Speech synthesis failed, code: %d, reason: %s", errorCode, String(errMessage, messageSize).c_str());
             xSemaphoreGive(taskFinished);
             break;
         }
@@ -113,7 +113,7 @@ void DoubaoTTS::eventCallback(const WStype_t type, uint8_t *payload, const size_
 String DoubaoTTS::buildFullClientRequest(const String &text) {
     JsonDocument params;
     const JsonObject app = params["app"].to<JsonObject>();
-    // TODO: 如下三个参数，修改成自己的
+    // TODO: the_following_three_parameters，modify_it_into_your_own
     app["appid"] = "xxx";
     app["token"] = "xxx";
     app["cluster"] = "volcano_tts";
@@ -138,13 +138,13 @@ String DoubaoTTS::buildFullClientRequest(const String &text) {
 }
 
 void DoubaoTTS::tts(const String &text, bool lastPacket) {
-    ESP_LOGD(TAG, "开始语音合成: %s", text.c_str());
-    // 等待websocket建立连接
+    ESP_LOGD(TAG, "Start speech synthesis: %s", text.c_str());
+    // wait_for_the_websocket_to_establish_a_connection
     while (!isConnected()) {
         connect();
         vTaskDelay(1);
     }
-    // 发送语音合成数据包
+    // send_voice_synthesis_packets
     const String payloadStr = buildFullClientRequest(text);
     uint8_t payload[payloadStr.length()];
     for (int i = 0; i < payloadStr.length(); i++) {
@@ -152,25 +152,25 @@ void DoubaoTTS::tts(const String &text, bool lastPacket) {
     }
     payload[payloadStr.length()] = '\0';
 
-    // 获取数据包长度，转换成4字节数组
+    // get_packet_length，convert_to_a_4byte_array
     const uint32_t payloadSize = payloadStr.length();
     std::vector<uint8_t> payloadLength = uint32ToUint8Array(payloadSize);
 
-    // 先写入四字节Header，可参考官方文档: https://www.volcengine.com/docs/6561/1257584
+    // write_the_fourbyte_header_first，please_refer_to_the_official_documentation: https://www.volcengine.com/docs/6561/1257584
     std::vector<uint8_t> clientRequest(defaultHeader, defaultHeader + sizeof(defaultHeader));
-    // 再写入4字节数据包长度
+    // write_another_4_byte_packet_length
     clientRequest.insert(clientRequest.end(), payloadLength.begin(), payloadLength.end());
-    // 再写入数据包
+    // write_to_the_packet
     clientRequest.insert(clientRequest.end(), payload, payload + sizeof(payload));
 
     if (!sendBIN(clientRequest.data(), clientRequest.size())) {
-        ESP_LOGE(TAG, "发送语音合成请求数据包失败: %s", text.c_str());
+        ESP_LOGE(TAG, "Failed to send voice synthesis request packet: %s", text.c_str());
         xSemaphoreGive(taskFinished);
         return;
     }
-    // 持续等待语音合成任务结束
+    // keep_waiting_for_the_voice_synthesis_task_to_end
     while (xSemaphoreTake(taskFinished, pdMS_TO_TICKS(1)) == pdFALSE) {
-        loop(); // 持续调用loop函数接收云端下发的数据包，直到收到最后一个包任务结束
+        loop(); // continuously_call_the_loop_function_to_receive_data_packets_sent_by_the_cloud，until_the_last_package_task_is_received
         vTaskDelay(1);
     }
     if (lastPacket) {
@@ -178,20 +178,20 @@ void DoubaoTTS::tts(const String &text, bool lastPacket) {
     }
 }
 
-// 用于消费音频播放任务队列，从队列取出音频数据，通过I2S播放
+// used_to_consume_audio_playback_task_queue，extract_audio_data_from_queue，play_through_i2s
 void DoubaoTTS::playAudio(void *ptr) const {
     PlayAudioTask task{};
     size_t bytesWritten;
     while (true) {
-        // 持续从队列取出播放任务
+        // continuously_remove_playback_tasks_from_the_queue
         if (xQueueReceive(playAudioQueue, &task, portMAX_DELAY) == pdPASS) {
-            // 写入I2S完成播放
+            // write_to_i2s_to_complete_playback
             const esp_err_t result = i2s_write(MAX98357_I2S_NUM,
                                                task.data,
                                                task.length * sizeof(int16_t),
                                                &bytesWritten,
                                                portMAX_DELAY);
-            // 播放完成记得释放内存（内存是生产者申请的，消费者处理完要释放）
+            // remember_to_release_the_memory_after_playing（the_memory_is_applied_by_the_producer，consumers_need_to_release_after_processing）
             free(task.data);
             if (result != ESP_OK) {
                 ESP_LOGE(TAG, "Play audio failed, errorCode: %d", result);

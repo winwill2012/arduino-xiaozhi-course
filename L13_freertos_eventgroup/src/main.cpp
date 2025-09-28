@@ -1,119 +1,119 @@
 #include <Arduino.h>
 #include <event_groups.h>
 
-// 定义洗衣机洗涤过程中的一些事件位
-#define DOOR_CLOSED   (1 << 0)  // 表示洗衣机舱门关闭
-#define WATER_READY   (1 << 1)  // 表示水位是否满足条件
-#define POWER_ON      (1 << 2)  // 表示电源已接通
+// define_some_event_bits_during_washing_machine_washing
+#define DOOR_CLOSED   (1 << 0)  // indicates_that_the_washing_machine_door_is_closed
+#define WATER_READY   (1 << 1)  // indicates_whether_the_water_level_meets_the_conditions
+#define POWER_ON      (1 << 2)  // indicates_that_the_power_supply_is_turned_on
 
-// 创建事件组句柄
+// create_event_group_handle
 EventGroupHandle_t xWashingEventGroup;
 
-// 检测舱门是否关闭的传感器任务
+// sensor_task_to_detect_whether_the_hatch_door_is_closed
 void vDoorSensorTask(void *pvParameters);
-// 检测水位是否到达预定位置的传感器任务
+// sensor_task_to_detect_whether_the_water_level_reaches_a_predetermined_position
 void vWaterSensorTask(void *pvParameters);
-// 检测电源是否已接通的任务
+// task_to_detect_whether_the_power_supply_is_turned_on
 void vPowerMonitorTask(void *pvParameters);
-// 正式开始洗衣的任务
+// the_laundry_task_officially_begins
 void vWashingMachineTask(void *pvParameters);
 
 void setup() {
   Serial.begin(9600);
   vTaskDelay(pdMS_TO_TICKS(3000));
 
-  // 创建事件组
+  // create_event_group
   xWashingEventGroup = xEventGroupCreate();
 
-  // 创建各个子任务
+  // create_individual_subtasks
   xTaskCreate(vDoorSensorTask, "Door", 1024, nullptr, 1, nullptr);
   xTaskCreate(vWaterSensorTask, "Water", 1024, nullptr, 1, nullptr);
   xTaskCreate(vPowerMonitorTask, "Power", 1024, nullptr, 1, nullptr);
   xTaskCreate(vWashingMachineTask, "Washing", 1024, nullptr, 2, nullptr);
 
-  Serial.println("洗衣机已就绪，请准备洗衣...");
+  Serial.println("The washing machine is ready, please_prepare_your_laundry...");
 }
 
 void loop() {
 }
 
-// 模拟舱门传感器检测任务
+// simulated_door_sensor_detection_task
 void vDoorSensorTask(void *pvParameters) {
   while (true) {
-    // 模拟门状态变化
+    // simulation_gate_state_changes
     vTaskDelay(pdMS_TO_TICKS(3000));
 
-    // 随机模拟门是否关闭
+    // whether_the_random_simulation_door_is_closed
     if (random(0, 2) == 1) {
-      Serial.println("洗衣机门已关闭");
+      Serial.println("Washing machine door closed");
       xEventGroupSetBits(xWashingEventGroup, DOOR_CLOSED);
     } else {
-      Serial.println("洗衣机门未关闭，请关闭门");
+      Serial.println("The washing machine door is not closed, please close the door");
       xEventGroupClearBits(xWashingEventGroup, DOOR_CLOSED);
     }
   }
 }
 
-// 水位传感器任务
+// water_level_sensor_task
 void vWaterSensorTask(void *pvParameters) {
   while (true) {
-    // 模拟水位状态变化
+    // simulate_water_level_changes
     vTaskDelay(pdMS_TO_TICKS(5000));
 
-    // 随机模拟水位是否达到要求
+    // random_simulation_of_whether_the_water_level_meets_the_requirements
     if (random(0, 2) == 1) {
-      Serial.println("水位已达到要求");
+      Serial.println("The water level has reached the requirements");
       xEventGroupSetBits(xWashingEventGroup, WATER_READY);
     } else {
-      Serial.println("水位不足，正在进水...");
+      Serial.println("The water level is insufficient, water_is_inflowing...");
       xEventGroupClearBits(xWashingEventGroup, WATER_READY);
     }
   }
 }
 
-// 电源监控任务
+// power_monitoring_tasks
 void vPowerMonitorTask(void *pvParameters) {
   while (true) {
-    // 模拟电源状态变化
+    // simulate_power_supply_status_changes
     vTaskDelay(pdMS_TO_TICKS(2000));
 
-    // 随机模拟电源是否接通
+    // whether_the_random_analog_power_supply_is_turned_on
     if (random(0, 2) == 1) {
-      Serial.println("电源已接通");
+      Serial.println("The power supply is turned on");
       xEventGroupSetBits(xWashingEventGroup, POWER_ON);
     } else {
-      Serial.println("电源未接通，请检查电源...");
+      Serial.println("The power supply is not turned on, please_check_the_power_supply...");
       xEventGroupClearBits(xWashingEventGroup, POWER_ON);
     }
   }
 }
 
-// 洗衣机任务 - 等待所有条件满足后开始工作
+// washing_machine_task - wait_until_all_conditions_are_met_to_start_working
 void vWashingMachineTask(void *pvParameters) {
   while (true) {
-    // 等待所有条件满足（门关闭、水位达标、电源接通）
+    // wait_for_all_conditions_to_be_met（door_closes、water_level_meets_standard、power_supply_is_turned_on）
     constexpr EventBits_t waitBits = (DOOR_CLOSED | WATER_READY | POWER_ON);
 
     const EventBits_t uxBits = xEventGroupWaitBits(
-      xWashingEventGroup, // 需要监听的事件组
-      waitBits, // 需要监听哪些事件，多个事件使用按位或运算组合
-      pdFALSE, // 满足条件后，不清除等待的事件位
-      pdTRUE, // 需要等待满足所有条件才行，为false则表示任意条件达标即可
-      portMAX_DELAY // 无限等待
+      xWashingEventGroup, // event_group_that_needs_to_be_listened_to
+      waitBits, // what_events_need_to_be_listened_to，multiple_events_use_bitwise_or_combination_of_operations
+      pdFALSE, // after_the_conditions_are_met，not_clearing_waiting_event_bits
+      pdTRUE, // you_need_to_wait_for_all_conditions_to_be_met，if_false_it_means_that_any_condition_is_met
+      portMAX_DELAY // unlimited_waiting
     );
 
-    // 检查是否所有条件都满足
+    // check_if_all_conditions_are_met
     if ((uxBits & waitBits) == waitBits) {
-      Serial.println("=== 开始洗衣程序 ===");
-      Serial.println("洗衣模式：标准");
+      Serial.println("=== start_the_laundry_program ===");
+      Serial.println("Laundry mode: Standard");
       vTaskDelay(pdMS_TO_TICKS(1000));
-      Serial.println("洗涤中...");
+      Serial.println("Washing...");
       vTaskDelay(pdMS_TO_TICKS(1000));
-      Serial.println("漂洗中...");
+      Serial.println("Rinse...");
       vTaskDelay(pdMS_TO_TICKS(1000));
-      Serial.println("脱水中...");
+      Serial.println("Dehydration...");
       vTaskDelay(pdMS_TO_TICKS(1000));
-      Serial.println("洗衣完成！");
+      Serial.println("Laundry is finished!");
       Serial.println("===================");
     }
   }

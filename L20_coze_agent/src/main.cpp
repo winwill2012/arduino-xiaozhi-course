@@ -8,23 +8,23 @@ void setup()
 {
     Serial.begin(115200);
     WiFiClass::mode(WIFI_MODE_STA);
-    // 这里的WiFi名称和密码修改成你自己的
+    // change_the_wifi_name_and_password_here_to_your_own
     WiFi.begin("ChinaNet-GdPt", "19910226");
-    ESP_LOGI(TAG, "正在联网");
+    ESP_LOGI(TAG, "Connecting to the Internet");
     while (WiFiClass::status() != WL_CONNECTED)
     {
         ESP_LOGI(TAG, ".");
         vTaskDelay(1000);
     }
-    ESP_LOGI(TAG, "联网成功");
+    ESP_LOGI(TAG, "Successful Internet connection");
 }
 
 void chat(const String& botId, const String& query, const String& conversationId)
 {
-    ESP_LOGI(TAG, "发起对话: %s", query.c_str());
+    ESP_LOGI(TAG, "Start a conversation: %s", query.c_str());
     HTTPClient http;
     http.begin("https://api.coze.cn/v3/chat?conversation_id=" + conversationId);
-    // 这里Bearer后面的token修改成你自己的Coze平台的token，可在https://www.coze.cn/open/oauth/pats这里获取
+    // Here_the_token_behind_bearer_is_modified_to_your_own_coze_platform_token, available_at_https://www.coze.cn/open/oauth/pats are obtained here
     http.addHeader("Authorization", "Bearer pat_xxxx");
     http.addHeader("Content-Type", "application/json");
     JsonDocument requestBody;
@@ -47,10 +47,10 @@ void chat(const String& botId, const String& query, const String& conversationId
         String line = "";
         String lastEvent;
         String output = "";
-        // 持续读取流式输出
+        // continuous_reading_of_streaming_output
         while (stream->connected() || stream->available())
         {
-            // 等待数据流有新的数据可读
+            // wait_for_the_data_stream_to_have_new_data_to_read
             while (!stream->available())
             {
                 vTaskDelay(pdMS_TO_TICKS(10));
@@ -64,7 +64,7 @@ void chat(const String& botId, const String& query, const String& conversationId
                     if (lastEvent == "event:conversation.message.delta" &&
                         line == "event:conversation.message.completed")
                     {
-                        ESP_LOGI(TAG, "Coze智能体调用结束");
+                        ESP_LOGI(TAG, "Coze agent call ends");
                         http.end();
                         return;
                     }
@@ -77,7 +77,7 @@ void chat(const String& botId, const String& query, const String& conversationId
                     DeserializationError error = deserializeJson(doc, response);
                     if (error)
                     {
-                        ESP_LOGE(TAG, "json反序列化失败: %s", error.c_str());
+                        ESP_LOGE(TAG, "json deserialization failed: %s", error.c_str());
                         continue;
                     }
                     if (doc["content"].is<String>() && doc["type"] == "answer")
@@ -89,7 +89,7 @@ void chat(const String& botId, const String& query, const String& conversationId
                 }
             }
         }
-        ESP_LOGI(TAG, "Coze智能体调用结束");
+        ESP_LOGI(TAG, "Coze agent call ends");
         http.end();
     }
 }

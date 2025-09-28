@@ -1,9 +1,9 @@
 #include <Arduino.h>
 #include "driver/i2s.h"
 
-#define MAX98357_I2S_NUM  I2S_NUM_0 // 使用哪个I2S口
-#define SAMPLE_RATE       16000  // 音频采样率
-#define MAX98357_DOUT     38  // max98357引脚，请参考：https://www.yuque.com/welinklab/pbihut/sdnm396nt3rmcfne
+#define MAX98357_I2S_NUM  I2S_NUM_0 // which_i2s_port_to_use
+#define SAMPLE_RATE       16000  // audio_sampling_rate
+#define MAX98357_DOUT     38  // max98357 pin, please_refer_to: https://www.yuque.com/welinklab/pbihut/sdnm396nt3rmcfne
 #define MAX98357_LRC      40
 #define MAX98357_BCLK     39
 
@@ -13,28 +13,28 @@
 #define MICROPHONE_I2S_LRC             2
 #define MICROPHONE_I2S_DOUT            1
 
-#define  READ_SAMPLE_COUNT 80000  // 定义录音长度，一共80K样本，对于16K采样率来说，就是录制5s
+#define  READ_SAMPLE_COUNT 80000  // define_recording_length，a_total_of_80k_samples，for_16k_sampling_rate，just_record_5s
 
 int16_t buffer[READ_SAMPLE_COUNT];
 size_t bytesRead, bytesWritten;
 
 void setup()
 {
-    // 构建i2s配置结构体
+    // build_i2s_configuration_structure
     constexpr i2s_config_t max98357_i2s_config = {
-        // I2S往数字功放发送数据，所以是TX模式
+        // I2S sends data to digital amplifier, so_its_tx_mode
         .mode = static_cast<i2s_mode_t>(I2S_MODE_MASTER | I2S_MODE_TX),
         .sample_rate = SAMPLE_RATE,
-        .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT, // 16位宽度
-        .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT, // 左声道播放
-        .communication_format = I2S_COMM_FORMAT_STAND_I2S, // 标准I2S协议
-        .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1, // 中断优先级，如果对实时性要求高，可以调高优先级
-        .dma_buf_count = 4, // DMA缓冲区数量
-        .dma_buf_len = 1024, // 每一个缓冲区可以保存的音频样本数量，如果值太大，播放音频有延迟，如果值太小，可能导致音频播放卡顿
-        .tx_desc_auto_clear = true // 数据传输完成后自动清理DMA描述符，简单方便，并且可以防止内存泄漏或DMA缓冲区溢出
+        .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT, // 16-bit width
+        .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT, // left_channel_playback
+        .communication_format = I2S_COMM_FORMAT_STAND_I2S, // standard_i2s_protocol
+        .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1, // interrupt_priority，if_the_realtime_requirements_are_high，priority_can_be_raised
+        .dma_buf_count = 4, // Number of DMA buffers
+        .dma_buf_len = 1024, // the_number_of_audio_samples_that_can_be_saved_in_each_buffer，if_the_value_is_too_large，there_is_a_delay_in_playing_audio，if_the_value_is_too_small，may_cause_audio_playback_to_stutter
+        .tx_desc_auto_clear = true // automatically_clean_up_dma_descriptors_after_data_transmission_is_completed，simple_and_convenient，and_it_can_prevent_memory_leaks_or_dma_buffer_overflow
     };
 
-    // 定义max98357相关引脚
+    // define_max98357_related_pins
     constexpr i2s_pin_config_t max98357_gpio_config = {
         .bck_io_num = MAX98357_BCLK,
         .ws_io_num = MAX98357_LRC,
@@ -42,9 +42,9 @@ void setup()
         .data_in_num = -1
     };
 
-    // 启动I2S驱动
+    // start_the_i2s_driver
     i2s_driver_install(MAX98357_I2S_NUM, &max98357_i2s_config, 0, nullptr);
-    // 让相关配置生效
+    // make_relevant_configurations_effective
     i2s_set_pin(MAX98357_I2S_NUM, &max98357_gpio_config);
 
 
@@ -52,7 +52,7 @@ void setup()
         .mode = static_cast<i2s_mode_t>(I2S_MODE_MASTER | I2S_MODE_RX),
         .sample_rate = AUDIO_SAMPLE_RATE,
         .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
-        .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT, // 这里的左右声道要和电路保持一致
+        .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT, // the_left_and_right_channels_here_should_be_consistent_with_the_circuit
         .communication_format = I2S_COMM_FORMAT_STAND_I2S,
         .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1,
         .dma_buf_count = 4,
@@ -74,12 +74,12 @@ void setup()
 
 void loop()
 {
-    if (Serial.available())  // 判断串口是否有数据输入，有输入输入开始录音
+    if (Serial.available())  // determine_whether_there_is_data_input_on_the_serial_port，there_are_input_inputs_to_start_recording
     {
         Serial.readStringUntil('\n');
         Serial.println("Recording...");
-        // 通过i2s_read函数从I2S通道录制音频
-        // 并且保存到buffer数组中，bytesRead为最终读取的字节数
+        // record_audio_from_i2s_channel_through_the_i2s_read_function
+        // and_save_to_buffer_array, bytesRead is the final number of bytes read
         const esp_err_t err = i2s_read(MICROPHONE_I2S_NUM, buffer,
                                        80000 * sizeof(int16_t),
                                        &bytesRead, portMAX_DELAY);
@@ -91,15 +91,15 @@ void loop()
         {
             for (int16_t & sample : buffer)
             {
-                // 因为录制的声音音量较少(可能主板录音孔太小有影响)
-                // 所以对音频进行增益并限制在有效范围内
-                // 注意此处使用的时int32_t来计算，主要是防止溢出
+                // because_the_recording_volume_is_low(it_may_be_that_the_motherboard_recording_hole_is_too_small_it_will_affect_it)
+                // so_gain_the_audio_and_limit_it_to_the_effective_range
+                // note_that_when_int32_t_is_used_here_to_calculate，mainly_to_prevent_overflow
                 int32_t value = static_cast<int32_t>(sample * 10.0);
                 if (value > 32767) value = 32767;
                 if (value < -32768) value = -32768;
                 sample = static_cast<int16_t>(value);
             }
-            // 通过i2s_write往数字功放I2S通道写入数据，进行音频播放
+            // write_data_to_the_digital_amplifier_i2s_channel_through_i2s_write，perform_audio_playback
             i2s_write(MAX98357_I2S_NUM, buffer, bytesRead,
                       &bytesWritten, portMAX_DELAY);
         }
