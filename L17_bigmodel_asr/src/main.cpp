@@ -123,9 +123,9 @@ void buildFullClientRequest()
     JsonDocument doc;
     doc.clear();
     const JsonObject app = doc["app"].to<JsonObject>();
-    app["appid"] = "4630330133";
+    app["appid"] = "8988564775";
     app["cluster"] = "volcengine_streaming_common";
-    app["token"] = "4YOzBPBOFizGvhWbqZroVA3fTXQbeWOW";
+    app["token"] = "dsWgV1rCvxiinw_H2clmJuAI-O1D8P94";
 
     const JsonObject user = doc["user"].to<JsonObject>();
     user["uid"] = getChipId(nullptr);
@@ -297,7 +297,7 @@ void setup()
     ESP_LOGI(TAG, "联网成功");
 
     // 这里的4YOzBPBOFizGvhWbqZroVA3fTXQbeWOW需要换成你自己的access token
-    client.setExtraHeaders("Authorization: Bearer; 4YOzBPBOFizGvhWbqZroVA3fTXQbeWOW");
+    client.setExtraHeaders("Authorization: Bearer; dsWgV1rCvxiinw_H2clmJuAI-O1D8P94");
     client.beginSSL("openspeech.bytedance.com", 443, "/api/v2/asr");
     client.onEvent(eventCallback);
 

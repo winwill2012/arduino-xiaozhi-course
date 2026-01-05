@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2025.1\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\main.dir/objects.a
-D:\mingw64\bin\ar.exe qc CMakeFiles\main.dir/objects.a @CMakeFiles\main.dir\objects1.rsp
-D:\mingw64\bin\g++.exe -g  -Wl,--subsystem,console -Wl,--undefined=WinMain -Wl,--whole-archive CMakeFiles\main.dir/objects.a -Wl,--no-whole-archive -o F:\code\arduino-xiaozhi-course\L66_lvgl_comprehensive_practical\bin\main.exe -Wl,--out-implib,F:\code\arduino-xiaozhi-course\L66_lvgl_comprehensive_practical\bin\libmain.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\main.dir\linkLibs.rsp
